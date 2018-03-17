@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SDUR</string>
+    <string name="tab_text_1">MEDLEM</string>
+    <string name="tab_text_2">EVENTS</string>
+    <string name="tab_text_3">TEMA</string>
+    <string name="action_settings">SETTINGS</string>
+    <string name="background_image">Bakgrundsbild på SDURs logga</string>
+</resources>
