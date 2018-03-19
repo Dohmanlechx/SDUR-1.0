@@ -14,9 +14,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: Starts.");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: Starting.");
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
         // Setting up the ViewPager with the sections adapter.
@@ -27,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        Log.d(TAG, "onCreate: Ending.");
+//        getSupportFragmentManager().beginTransaction().replace(R.id.tab3_youtube, fragment).addToBackStack(null).commit();
+
+        Log.d(TAG, "onCreate: Ends.");
     }
 
     // Adding fragments & titles to an adapter, and finishing it off

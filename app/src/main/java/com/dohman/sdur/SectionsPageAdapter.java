@@ -12,6 +12,7 @@ import java.util.List;
  */
 
 public class SectionsPageAdapter extends FragmentPagerAdapter {
+    private static final String TAG = "SectionsPageAdapter";
 
     // Our ArrayLists of fragments.
     private final List<Fragment> mFragmentList = new ArrayList<>();
