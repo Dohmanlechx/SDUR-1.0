@@ -49,12 +49,11 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         // Initializing the Youtube-clip.
         mPlayerSupportFragment = YouTubePlayerSupportFragment.newInstance();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.add(R.id.youtubeFragment, mPlayerSupportFragment).commit();
+        transaction.add(R.id.youtube_fragment_container, mPlayerSupportFragment).commit();
 
         mPlayerSupportFragment.initialize(API_KEY, this);
 
         transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.youtubeFragment, mPlayerSupportFragment);
         transaction.commit();
 
         Log.d(TAG, "TAB3, onCreateView: Ends.");
