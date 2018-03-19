@@ -13,10 +13,11 @@ import java.util.List;
 
 public class SectionsPageAdapter extends FragmentPagerAdapter {
 
-    // Storing all fragments into an array.
+    // Our ArrayLists of fragments.
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
 
+    // Storing all fragments into an ArrayList.
     public void addFragment(Fragment fragment, String title) {
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);

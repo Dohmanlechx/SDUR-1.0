@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
         // Setting up the ViewPager with the sections adapter.
+        // Without the ViewPager, you won't be able to swipe between tabs.
         mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
 
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: Ending.");
     }
 
+    // Adding fragments & titles to an adapter, and finishing it off
+    // with setting the adapter to our ViewPager.
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new Tab1Membership(), getString(R.string.tab_text_1));
