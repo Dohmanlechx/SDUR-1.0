@@ -4,23 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tab3_youtube"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <FrameLayout
         android:id="@+id/youtube_fragment_container"
         android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"></FrameLayout>
+        android:layout_height="wrap_content"></FrameLayout>
 
     <TextView
         android:id="@+id/tv_header_du_bestammer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:background="@drawable/text_style"
         android:gravity="start"
-        android:padding="12dp"
+        android:paddingEnd="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="16dp"
+        android:paddingStart="8dp"
+        android:paddingTop="32dp"
         android:text="@string/header_du_bestammer"
         android:textAlignment="textStart"
         android:textColor="@color/colorAccent"
@@ -35,8 +38,11 @@
         android:layout_height="wrap_content"
         android:background="@drawable/text_style_2"
         android:gravity="start"
-        android:paddingBottom="8dp"
-        android:paddingRight="8dp"
+        android:lineSpacingExtra="2dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="16dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="16dp"
         android:paddingStart="8dp"
         android:text="@string/text_du_bestammer"
         android:textAlignment="textStart"
@@ -45,5 +51,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_header_du_bestammer" />
+
+    <!--<ImageView-->
+    <!--android:id="@+id/imageView_background_youtube"-->
+    <!--android:layout_width="130dp"-->
+    <!--android:layout_height="130dp"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:layout_marginEnd="24dp"-->
+    <!--android:scaleType="fitStart"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:srcCompat="@drawable/backgroundimageregular" />-->
 
 </android.support.constraint.ConstraintLayout>

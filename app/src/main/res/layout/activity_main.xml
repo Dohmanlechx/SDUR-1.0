@@ -9,7 +9,7 @@
     tools:context="com.dohman.sdur.MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/background_image"
@@ -29,8 +29,8 @@
             android:layout_height="56dp"
             android:layout_weight="1"
             android:background="?attr/colorPrimaryDark"
-            android:minHeight="48dp"
             android:maxWidth="264dp"
+            android:minHeight="48dp"
             android:minWidth="72dp"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"

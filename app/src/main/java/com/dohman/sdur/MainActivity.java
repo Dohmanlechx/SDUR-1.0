@@ -1,17 +1,19 @@
 package com.dohman.sdur;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
+    // SectionPageAdapter is that puts fragments together into an tab-menu.
+
+    // TODO Is this line even necessary?
     private SectionsPageAdapter mSectionsPageAdapter;
+
     private ViewPager mViewPager;
 
     @Override
@@ -20,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // TODO Is this line even necessary?
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+
         // Setting up the ViewPager with the sections adapter.
         // Without the ViewPager, you won't be able to swipe between tabs.
         mViewPager = findViewById(R.id.container);
@@ -28,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-//        getSupportFragmentManager().beginTransaction().replace(R.id.tab3_youtube, fragment).addToBackStack(null).commit();
 
         Log.d(TAG, "onCreate: Ends.");
     }

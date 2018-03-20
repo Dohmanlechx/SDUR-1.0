@@ -27,7 +27,9 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
 
     private FragmentActivity myContext;
 
+    // My API-key for Google.
     private static final String API_KEY = "AIzaSyA7tz7XjWHy_cYyRk69xFfE2demIjX7gYE";
+    // My API-key for YouTube.
     private static final String YOUTUBE_VIDEO_ID = "XU76X00N0xY";
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
@@ -36,6 +38,7 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
 
     private YouTubePlayerSupportFragment mPlayerSupportFragment;
 
+    // Creating an "myContext" from this method.
     @Override
     public void onAttach(Activity activity) {
         if (activity instanceof FragmentActivity) {
@@ -51,13 +54,15 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         // Connects to the right layout file.
         View tab3view = inflater.inflate(R.layout.tab3_youtube, container, false);
 
-        // Finding the TextView and changing font.
+        // Finding the TextViews.
         textViewDBHeader = tab3view.findViewById(R.id.tv_header_du_bestammer);
         textViewDBText = tab3view.findViewById(R.id.tv_du_bestammer);
 
+        // Declaring fonts.
         Typeface custom_font_1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Bold.ttf");
         Typeface custom_font_2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
 
+        // Setting the fonts.
         textViewDBHeader.setTypeface(custom_font_1);
         textViewDBText.setTypeface(custom_font_2);
 
@@ -82,6 +87,7 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         Log.d(TAG, "onInitializationSuccess: Video playing ok.");
         if (!wasRestored) {
             player.cueVideo(YOUTUBE_VIDEO_ID);
+            player.loadVideo(YOUTUBE_VIDEO_ID);
         }
     }
 
