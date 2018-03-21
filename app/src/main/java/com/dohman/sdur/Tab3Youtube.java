@@ -59,8 +59,8 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         textViewDBText = tab3view.findViewById(R.id.tv_du_bestammer);
 
         // Declaring fonts.
-        Typeface custom_font_1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Bold.ttf");
-        Typeface custom_font_2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+        Typeface custom_font_1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
+        Typeface custom_font_2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
 
         // Setting the fonts.
         textViewDBHeader.setTypeface(custom_font_1);

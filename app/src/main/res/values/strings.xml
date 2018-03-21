@@ -1,12 +1,20 @@
 <resources>
     <string name="app_name">SDUR</string>
-    <string name="tab_text_1">MEDLEM</string>
-    <string name="tab_text_2">EVENTS</string>
-    <string name="tab_text_3">TEMA</string>
-    <string name="action_settings">SETTINGS</string>
     <string name="background_image">Bakgrundsbild på SDURs logga</string>
+    <string name="action_settings">SETTINGS</string>
+
+    <string name="tab_text_1">MEDLEM</string>
+    <string name="hinttext_name">ex. Pelle Pelikansson</string>
+    <string name="text_yourName">Skriv ditt namn</string>
+    <string name="text_memberCheck">MEDLEMCHECK</string>
+    <string name="button_memberCheck">Kontrollera</string>
+
+    <string name="tab_text_2">EVENTS</string>
+
+    <string name="tab_text_3">TEMA</string>
     <string name="header_du_bestammer">DU BESTÄMMER!</string>
     <string name="text_du_bestammer">Det är DU som medlem som bestämmer över SDUR, något som många glömt.
         Därför är vårt tema under 2018 ”DU BESTÄMMER”, det innebär att du som medlem kan komma med idéer
-        eller önskemål på aktiviteter så ser vi till att uppfylla dina önskemål!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</string>
+        eller önskemål på aktiviteter så ser vi till att uppfylla dina önskemål!
+        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</string>
 </resources>
