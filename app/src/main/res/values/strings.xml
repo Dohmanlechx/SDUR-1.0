@@ -10,6 +10,7 @@
     <string name="button_memberCheck">Kontrollera</string>
 
     <string name="tab_text_2">EVENTS</string>
+    <string name="text_minusandclock">, kl </string>
 
     <string name="tab_text_3">TEMA</string>
     <string name="header_du_bestammer">DU BESTÄMMER!</string>

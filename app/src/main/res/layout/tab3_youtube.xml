@@ -52,15 +52,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_header_du_bestammer" />
 
-    <!--<ImageView-->
-    <!--android:id="@+id/imageView_background_youtube"-->
-    <!--android:layout_width="130dp"-->
-    <!--android:layout_height="130dp"-->
-    <!--android:layout_marginBottom="8dp"-->
-    <!--android:layout_marginEnd="24dp"-->
-    <!--android:scaleType="fitStart"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:srcCompat="@drawable/backgroundimageregular" />-->
-
 </android.support.constraint.ConstraintLayout>

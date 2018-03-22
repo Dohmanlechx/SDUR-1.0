@@ -8,13 +8,16 @@
 
     <EditText
         android:id="@+id/editText_member"
-        android:layout_width="328dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:hint="@string/hinttext_name"
         android:inputType="textPersonName"
         android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView_yourName"
         app:layout_constraintTop_toBottomOf="@+id/textView_yourName" />
 
@@ -35,9 +38,11 @@
 
     <TextView
         android:id="@+id/textView_memberCheck"
-        android:layout_width="328dp"
-        android:layout_height="133dp"
+        android:layout_width="0dp"
+        android:layout_height="161dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/text_style_3"
         android:fontFamily="@font/roboto_black"
         android:gravity="center"
@@ -46,7 +51,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="38sp"
         app:layout_constraintBottom_toTopOf="@+id/textView_yourName"
-        app:layout_constraintStart_toStartOf="@+id/textView_yourName" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_checkMember"
