@@ -8,7 +8,6 @@
     </item>
 
     <item
-        android:right="18dp"
         android:top="18dp">
         <shape android:shape="rectangle">
             <solid android:color="@color/colorPrimary" />

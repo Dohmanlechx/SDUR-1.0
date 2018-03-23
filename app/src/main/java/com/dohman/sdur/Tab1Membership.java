@@ -18,8 +18,8 @@ public class Tab1Membership extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Connects to the right layout file.
-        View view = inflater.inflate(R.layout.tab1_membership, container, false);
+        View tab1view = inflater.inflate(R.layout.tab1_membership, container, false);
 
-        return view;
+        return tab1view;
     }
 }

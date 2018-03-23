@@ -31,9 +31,9 @@ public class Tab2Events extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: Starts.");
         // Connects to the right layout file.
-        View view = inflater.inflate(R.layout.tab2_events, container, false);
+        View tab2view = inflater.inflate(R.layout.tab2_events, container, false);
 
-        mEventListView = view.findViewById(R.id.listview_events);
+        mEventListView = tab2view.findViewById(R.id.listview_events);
         mEventList = new ArrayList<>();
 
         // Adding data from database.
@@ -59,21 +59,21 @@ public class Tab2Events extends Fragment {
         // Event 9.
         mEventList.add(new Event("fest!!!", "festtext", "2018-04-22", "13:00", "på dukis", "www.dukis.se"));
 
-        // TODO Fixa dividers (gaps)
+        // TODO Fix dividers (gaps)
         GradientDrawable shape = new GradientDrawable();
         shape.setShape(GradientDrawable.RECTANGLE);
         shape.setColor(getResources().getColor(R.color.colorPrimary));
-        shape.setStroke(10, getResources().getColor(R.color.colorAccent));
-        shape.setCornerRadius(15);
+        shape.setStroke(5, getResources().getColor(R.color.colorAccent));
+        shape.setCornerRadius(10);
 
         // Initializing the adapter.
         Log.d(TAG, "onCreateView: Initializing the adapter...");
         mEventListAdapter = new EventListAdapter(getContext(), mEventList);
         mEventListView.setAdapter(mEventListAdapter);
-        mEventListView.setDivider(this.getResources().getDrawable(R.drawable.transperant_color));
         mEventListView.setDividerHeight(20);
         mEventListView.setBackground(shape);
 
+        // OnClickListener on all views.
         mEventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -84,6 +84,6 @@ public class Tab2Events extends Fragment {
         });
 
         Log.d(TAG, "onCreateView: Ends.");
-        return view;
+        return tab2view;
     }
 }

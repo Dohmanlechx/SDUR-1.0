@@ -12,7 +12,10 @@ public class MainActivity extends AppCompatActivity {
 
     // SectionPageAdapter is that puts fragments together into an tab-menu.
     private SectionsPageAdapter mAdapter;
+    // ViewPager is often used in combination with Fragments. Putting it together.
     private ViewPager mViewPager;
+    // TabLayout is what it stands, I guess, setting up the layout for Tab-Bars.
+    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // TODO Is this line even necessary?
         mAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         // Setting up the ViewPager with the sections mAdapter.
@@ -29,8 +31,11 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
 
-        TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        mTabLayout = findViewById(R.id.tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
+
+        // Selecting the "Events" tab as home/launch screen, see method.
+        selectPage(1);
 
         Log.d(TAG, "onCreate: Ends.");
     }
@@ -42,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.addFragment(new Tab2Events(), getString(R.string.tab_text_2));
         mAdapter.addFragment(new Tab3Youtube(), getString(R.string.tab_text_3));
         viewPager.setAdapter(mAdapter);
+    }
+
+    void selectPage(int pageIndex) {
+        mTabLayout.setScrollPosition(pageIndex, 0f, true);
+        mViewPager.setCurrentItem(pageIndex);
     }
 }
 
