@@ -1,5 +1,6 @@
 package com.dohman.sdur;
 
+import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,51 +34,75 @@ public class Tab2Events extends Fragment {
     private EventListAdapter mEventListAdapter;
     private List<Event> mEventList;
 
+    private TextView tvtest;
+
+    private String event1clock;
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: Starts.");
         // Connects to the right layout file.
         View tab2view = inflater.inflate(R.layout.tab2_events, container, false);
 
+        // TODO Koppla rätt och läsa in data, sen komma på snyggare sätt att koda
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        DatabaseReference eventRef = database.getReference("Events");
+        DatabaseReference event1Ref = eventRef.child("Event1");
+//        DatabaseReference event1ClockRef = event1Ref.child("Clock");
+//        DatabaseReference event1DateRef = event1Ref.child("Date");
+//        DatabaseReference event1LinkRef = event1Ref.child("Link");
+//        DatabaseReference event1NameRef = event1Ref.child("Name");
+//        DatabaseReference event1PlaceRef = event1Ref.child("Place");
+//        DatabaseReference event1TextRef = event1Ref.child("Text");
+
         mEventListView = tab2view.findViewById(R.id.listview_events);
         mEventList = new ArrayList<>();
 
+        tvtest = tab2view.findViewById(R.id.textViewTest);
+
         // Adding data from database.
+        event1Ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                event1clock = dataSnapshot.child("Clock").getValue(String.class);
+                Log.d(TAG, "onDataChange: Clock data is " + event1clock);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", databaseError.toException());
+            }
+        });
+
+        tvtest.setText(event1clock);
 
         // TODO Lägga in alla events på en gång från Firebase med hjälp av en for loop.
 
         // Event 1.
-        mEventList.add(new Event("GOKART!!!", "gokarttext", "2018-03-22", "13:00", "på dukis", "www.gokart.se"));
+        mEventList.add(new Event("GOKART!!!", "Vi åker gokart! Vi träffas vid McDonalds i Alvik! Pris medlem: 100 kr, Icke medlem: 400 kr", "2018-03-22", event1clock, "på dukis", "www.gokart.se"));
         // Event 2.
-        mEventList.add(new Event("kids!!!", "kidstext", "2018-03-24", "16:00", "på dövashus", "www.kids.se"));
         // Event 3.
-        mEventList.add(new Event("fest!!!", "festtext", "2018-04-22", "13:00", "på dukis", "www.dukis.se"));
         // Event 4.
-        mEventList.add(new Event("GOKART!!!", "gokarttext", "2018-03-22", "13:00", "på dukis", "www.gokart.se"));
         // Event 5.
-        mEventList.add(new Event("kids!!!", "kidstext", "2018-03-24", "16:00", "på dövashus", "www.kids.se"));
         // Event 6.
-        mEventList.add(new Event("fest!!!", "festtext", "2018-04-22", "13:00", "på dukis", "www.dukis.se"));
         // Event 7.
-        mEventList.add(new Event("GOKART!!!", "gokarttext", "2018-03-22", "13:00", "på dukis", "www.gokart.se"));
         // Event 8.
-        mEventList.add(new Event("kids!!!", "kidstext", "2018-03-24", "16:00", "på dövashus", "www.kids.se"));
         // Event 9.
-        mEventList.add(new Event("fest!!!", "festtext", "2018-04-22", "13:00", "på dukis", "www.dukis.se"));
 
-        // TODO Fix dividers (gaps)
         GradientDrawable shape = new GradientDrawable();
         shape.setShape(GradientDrawable.RECTANGLE);
-        shape.setColor(getResources().getColor(R.color.colorPrimary));
-        shape.setStroke(5, getResources().getColor(R.color.colorAccent));
-        shape.setCornerRadius(10);
+        shape.setColor(getResources().getColor(R.color.colorAccent));
+//        shape.setStroke(5, getResources().getColor(R.color.colorAccent));
+//        shape.setCornerRadius(50);
 
         // Initializing the adapter.
         Log.d(TAG, "onCreateView: Initializing the adapter...");
         mEventListAdapter = new EventListAdapter(getContext(), mEventList);
         mEventListView.setAdapter(mEventListAdapter);
-        mEventListView.setDividerHeight(20);
+        mEventListView.setDividerHeight(10);
         mEventListView.setBackground(shape);
 
         // OnClickListener on all views.

@@ -13,6 +13,9 @@ public class Event {
     private String place;
     private String link;
 
+    public Event() {
+    }
+
     public Event(String name, String text, String date, String clock, String place, String link) {
         this.name = name;
         this.text = text;

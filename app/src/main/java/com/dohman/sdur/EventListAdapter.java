@@ -1,6 +1,7 @@
 package com.dohman.sdur;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -59,6 +60,13 @@ public class EventListAdapter extends BaseAdapter {
         tvEventClock.setText(mEventList.get(position).getClock());
         tvEventText.setText(mEventList.get(position).getText());
         tvEventLink.setText(mEventList.get(position).getLink());
+
+        // Alternate backgroundcolor for the "cards".
+        if (position % 2 == 0) {
+            view.setBackgroundColor(view.getResources().getColor(R.color.colorPrimaryDark));
+        } else {
+            view.setBackgroundColor(view.getResources().getColor(R.color.colorPrimary));
+        }
 
         // Saving event id to tag.
         view.setTag(mEventList.get(position).getId());
