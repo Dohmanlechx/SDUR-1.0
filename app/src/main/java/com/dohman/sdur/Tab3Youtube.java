@@ -1,7 +1,9 @@
 package com.dohman.sdur;
 
 import android.app.Activity;
-import android.graphics.Typeface;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,7 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
 
     TextView textViewDBHeader;
     TextView textViewDBText;
+    ImageView facebookIcon;
 
     private YouTubePlayerSupportFragment mPlayerSupportFragment;
 
@@ -58,13 +62,17 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         textViewDBHeader = tab3view.findViewById(R.id.tv_header_du_bestammer);
         textViewDBText = tab3view.findViewById(R.id.tv_du_bestammer);
 
-        // Declaring fonts.
-        Typeface custom_font_1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
-        Typeface custom_font_2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
-
-        // Setting the fonts.
-        textViewDBHeader.setTypeface(custom_font_1);
-        textViewDBText.setTypeface(custom_font_2);
+        // Finding the Facebook button and making it clickable.
+        // It takes the user to the Facebook-app and the group there.
+        facebookIcon = tab3view.findViewById(R.id.facebook_icon);
+        facebookIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(myContext, "Tar dig till Facebook...", Toast.LENGTH_SHORT).show();
+                Intent facebookIntent = openFacebook(myContext);
+                startActivity(facebookIntent);
+            }
+        });
 
         // Initializing the Youtube-clip.
         mPlayerSupportFragment = YouTubePlayerSupportFragment.newInstance();
@@ -100,6 +108,20 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         } else {
             String errorMessage = String.format("Misslyckades att spela upp videon. (%1$s)", errorResults.toString());
             Toast.makeText(myContext, errorMessage, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    // Method taking the user to the Facebook App,
+    // or to the Facebook in browser if fails.
+    public static Intent openFacebook(Context context) {
+        try {
+            context.getPackageManager()
+                    .getPackageInfo("com.facebook.dohman", 0);
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/193360381417515/"));
+        }
+        catch (Exception e) {
+            return new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://www.facebook.com/groups/193360381417515/"));
         }
     }
 }

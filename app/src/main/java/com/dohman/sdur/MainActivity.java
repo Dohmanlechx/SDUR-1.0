@@ -1,5 +1,6 @@
 package com.dohman.sdur;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -10,40 +11,47 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     // SectionPageAdapter is that puts fragments together into an tab-menu.
-
-    // TODO Is this line even necessary?
-    private SectionsPageAdapter mSectionsPageAdapter;
-
+    private SectionsPageAdapter mAdapter;
+    // ViewPager is often used in combination with Fragments. Putting it together.
     private ViewPager mViewPager;
+    // TabLayout is what it stands, I guess, setting up the layout for Tab-Bars.
+    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: Starts.");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // TODO Is this line even necessary?
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        mAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
-        // Setting up the ViewPager with the sections adapter.
+        // Setting up the ViewPager with the sections mAdapter.
         // Without the ViewPager, you won't be able to swipe between tabs.
         mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
 
-        TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        mTabLayout = findViewById(R.id.tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
+
+        // Selecting the "Events" tab as home/launch screen, see method.
+        selectPage(1);
 
         Log.d(TAG, "onCreate: Ends.");
     }
 
-    // Adding fragments & titles to an adapter, and finishing it off
-    // with setting the adapter to our ViewPager.
+    // Adding fragments & titles to an mAdapter, and finishing it off
+    // with setting the mAdapter to our ViewPager.
     private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Membership(), getString(R.string.tab_text_1));
-        adapter.addFragment(new Tab2Events(), getString(R.string.tab_text_2));
-        adapter.addFragment(new Tab3Youtube(), getString(R.string.tab_text_3));
-        viewPager.setAdapter(adapter);
+        mAdapter.addFragment(new Tab1Membership(), getString(R.string.tab_text_1));
+        mAdapter.addFragment(new Tab2Events(), getString(R.string.tab_text_2));
+        mAdapter.addFragment(new Tab3Youtube(), getString(R.string.tab_text_3));
+        viewPager.setAdapter(mAdapter);
+    }
+
+    void selectPage(int pageIndex) {
+        mTabLayout.setScrollPosition(pageIndex, 0f, true);
+        mViewPager.setCurrentItem(pageIndex);
     }
 }
 

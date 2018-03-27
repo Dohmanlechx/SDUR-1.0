@@ -7,5 +7,11 @@ om varför det inte funkade och så.
 
 ----------------------------------------------------------------------------------
 
+EVENTS:
 
+Skrotade idén med att ha med i bilder, kändes som för mycket jobb och kändes för
+opraktiskt både för mig och för dem som ska lägga info i databasen. Kör istället
+på RelativeLayout och GradientDrawable. Blir snygga rutor.
+
+----------------------------------------------------------------------------------
 

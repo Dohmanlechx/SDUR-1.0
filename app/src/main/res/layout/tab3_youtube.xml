@@ -18,16 +18,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/text_style"
+        android:fontFamily="@font/roboto_black"
         android:gravity="start"
         android:paddingEnd="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="16dp"
         android:paddingStart="8dp"
-        android:paddingTop="32dp"
+        android:paddingTop="20dp"
         android:text="@string/header_du_bestammer"
         android:textAlignment="textStart"
         android:textColor="@color/colorAccent"
-        android:textSize="24sp"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/youtube_fragment_container" />
@@ -36,14 +37,12 @@
         android:id="@+id/tv_du_bestammer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/text_style_2"
+        android:fontFamily="@font/roboto_bold"
         android:gravity="start"
         android:lineSpacingExtra="2dp"
-        android:paddingBottom="16dp"
-        android:paddingEnd="16dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="16dp"
-        android:paddingStart="8dp"
         android:text="@string/text_du_bestammer"
         android:textAlignment="textStart"
         android:textColor="@color/white"
@@ -52,15 +51,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_header_du_bestammer" />
 
-    <!--<ImageView-->
-    <!--android:id="@+id/imageView_background_youtube"-->
-    <!--android:layout_width="130dp"-->
-    <!--android:layout_height="130dp"-->
-    <!--android:layout_marginBottom="8dp"-->
-    <!--android:layout_marginEnd="24dp"-->
-    <!--android:scaleType="fitStart"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:srcCompat="@drawable/backgroundimageregular" />-->
+    <ImageView
+        android:id="@+id/facebook_icon"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorAccent"
+        android:padding="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_du_bestammer"
+        app:srcCompat="@drawable/facebook_icon" />
 
 </android.support.constraint.ConstraintLayout>
