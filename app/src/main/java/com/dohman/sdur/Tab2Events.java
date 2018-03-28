@@ -1,6 +1,5 @@
 package com.dohman.sdur;
 
-import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -50,7 +49,7 @@ public class Tab2Events extends Fragment {
 
         DatabaseReference eventRef = database.getReference("Events");
         DatabaseReference event1Ref = eventRef.child("Event1");
-//        DatabaseReference event1ClockRef = event1Ref.child("Clock");
+        DatabaseReference event1ClockRef = event1Ref.child("Clock");
 //        DatabaseReference event1DateRef = event1Ref.child("Date");
 //        DatabaseReference event1LinkRef = event1Ref.child("Link");
 //        DatabaseReference event1NameRef = event1Ref.child("Name");
@@ -62,22 +61,17 @@ public class Tab2Events extends Fragment {
 
         tvtest = tab2view.findViewById(R.id.textViewTest);
 
-        // Adding data from database.
-        event1Ref.addValueEventListener(new ValueEventListener() {
+        event1ClockRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                event1clock = dataSnapshot.child("Clock").getValue(String.class);
-                Log.d(TAG, "onDataChange: Clock data is " + event1clock);
+                event1clock = dataSnapshot.getValue(String.class);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", databaseError.toException());
+
             }
         });
-
-        tvtest.setText(event1clock);
 
         // TODO Lägga in alla events på en gång från Firebase med hjälp av en for loop.
 
