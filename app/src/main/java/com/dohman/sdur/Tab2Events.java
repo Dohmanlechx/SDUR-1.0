@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -33,9 +32,7 @@ public class Tab2Events extends Fragment {
     private EventListAdapter mEventListAdapter;
     private List<Event> mEventList;
 
-    private TextView tvtest;
-
-    private String event1clock;
+    private DatabaseReference ref;
 
     @Nullable
     @Override
@@ -44,27 +41,31 @@ public class Tab2Events extends Fragment {
         // Connects to the right layout file.
         View tab2view = inflater.inflate(R.layout.tab2_events, container, false);
 
-        // TODO Koppla rätt och läsa in data, sen komma på snyggare sätt att koda
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-        DatabaseReference eventRef = database.getReference("Events");
-        DatabaseReference event1Ref = eventRef.child("Event1");
-        DatabaseReference event1ClockRef = event1Ref.child("Clock");
-//        DatabaseReference event1DateRef = event1Ref.child("Date");
-//        DatabaseReference event1LinkRef = event1Ref.child("Link");
-//        DatabaseReference event1NameRef = event1Ref.child("Name");
-//        DatabaseReference event1PlaceRef = event1Ref.child("Place");
-//        DatabaseReference event1TextRef = event1Ref.child("Text");
-
         mEventListView = tab2view.findViewById(R.id.listview_events);
         mEventList = new ArrayList<>();
 
-        tvtest = tab2view.findViewById(R.id.textViewTest);
+        // TODO Koppla rätt och läsa in data, sen komma på snyggare sätt att koda
+        ref = FirebaseDatabase.getInstance().getReference().child("Events");
 
-        event1ClockRef.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                event1clock = dataSnapshot.getValue(String.class);
+                for (DataSnapshot dataSnapshotChildren : dataSnapshot.getChildren()) {
+                    Event event = dataSnapshot.getValue(Event.class);
+                    String tid = (String) dataSnapshot.child("tid").getValue();
+                    String infotext = (String) dataSnapshot.child("infotext").getValue();
+                    String date = (String) dataSnapshot.child("datum").getValue();
+                }
+
+
+
+
+
+//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    Event event = ds.getValue(Event.class);
+//                    mEventList.add(event);
+//                    Log.d(TAG, "onDataChange: added activity: " + event.getLaenk());
+//                }
             }
 
             @Override
@@ -76,15 +77,7 @@ public class Tab2Events extends Fragment {
         // TODO Lägga in alla events på en gång från Firebase med hjälp av en for loop.
 
         // Event 1.
-        mEventList.add(new Event("GOKART!!!", "Vi åker gokart! Vi träffas vid McDonalds i Alvik! Pris medlem: 100 kr, Icke medlem: 400 kr", "2018-03-22", event1clock, "på dukis", "www.gokart.se"));
-        // Event 2.
-        // Event 3.
-        // Event 4.
-        // Event 5.
-        // Event 6.
-        // Event 7.
-        // Event 8.
-        // Event 9.
+//        mEventList.add();
 
         GradientDrawable shape = new GradientDrawable();
         shape.setShape(GradientDrawable.RECTANGLE);

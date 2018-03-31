@@ -7,22 +7,22 @@ package com.dohman.sdur;
 public class Event {
     private int id;
     private String name;
-    private String text;
-    private String date;
-    private String clock;
-    private String place;
-    private String link;
+    private String infotext;
+    private String datum;
+    private String tid;
+    private String plats;
+    private String laenk;
 
     public Event() {
     }
 
-    public Event(String name, String text, String date, String clock, String place, String link) {
+    public Event(String name, String infotext, String datum, String tid, String plats, String laenk) {
         this.name = name;
-        this.text = text;
-        this.date = date;
-        this.clock = clock;
-        this.place = place;
-        this.link = link;
+        this.infotext = infotext;
+        this.datum = datum;
+        this.tid = tid;
+        this.plats = plats;
+        this.laenk = laenk;
     }
 
     public int getId() {
@@ -41,43 +41,43 @@ public class Event {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
+    public String getInfotext() {
+        return infotext;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setInfotext(String infotext) {
+        this.infotext = infotext;
     }
 
-    public String getDate() {
-        return date;
+    public String getDatum() {
+        return datum;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDatum(String datum) {
+        this.datum = datum;
     }
 
-    public String getClock() {
-        return clock;
+    public String getTid() {
+        return tid;
     }
 
-    public void setClock(String clock) {
-        this.clock = clock;
+    public void setTid(String tid) {
+        this.tid = tid;
     }
 
-    public String getPlace() {
-        return place;
+    public String getPlats() {
+        return plats;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
+    public void setPlats(String plats) {
+        this.plats = plats;
     }
 
-    public String getLink() {
-        return link;
+    public String getLaenk() {
+        return laenk;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setLaenk(String laenk) {
+        this.laenk = laenk;
     }
 }

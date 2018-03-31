@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_eventdate"
         android:fontFamily="@font/roboto_bold"
-        android:paddingRight="4dp"
         android:text="@string/text_minusandclock"
+        android:paddingRight="4dp"
         android:textColor="@color/colorAccent"
         android:textSize="22sp" />
 
@@ -31,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_eventdate"
         android:fontFamily="@font/roboto_black"
-        android:paddingTop="4dp"
         android:text="Go-kart!"
+        android:paddingTop="4dp"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
 
