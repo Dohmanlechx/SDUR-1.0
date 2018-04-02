@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_eventdate"
         android:fontFamily="@font/roboto_bold"
-        android:text="@string/text_minusandclock"
         android:paddingRight="4dp"
+        android:text="@string/text_minusandclock"
         android:textColor="@color/colorAccent"
         android:textSize="22sp" />
 
@@ -31,10 +31,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_eventdate"
         android:fontFamily="@font/roboto_black"
-        android:text="Go-kart!"
         android:paddingTop="4dp"
+        android:text="Go-kart!"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/tv_eventplace"
@@ -43,12 +43,12 @@
         android:layout_above="@id/tv_eventtext"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/tv_eventname"
-        android:fontFamily="@font/roboto_italic"
+        android:fontFamily="@font/roboto_blackitalic"
         android:gravity="center_horizontal"
         android:text="Hejvägen 17, Alvik"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/tv_eventclock"
@@ -77,7 +77,8 @@
         android:layout_below="@id/tv_eventtext"
         android:text="www.sdur.se"
         android:textColor="@color/colorAccent"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

@@ -6,8 +6,25 @@
     <string name="tab_text_1">MEDLEM</string>
     <string name="hinttext_name">ex. Pelle Pelikansson</string>
     <string name="text_yourName">Skriv ditt namn</string>
-    <string name="text_memberCheck">MEDLEMCHECK</string>
+    <string name="text_memberCheck">BLI MEDLEM</string>
     <string name="button_memberCheck">Kontrollera</string>
+    <string name="text_forename">Förnamn</string>
+    <string name="hint_forename">ex. Pelle</string>
+    <string name="text_surname">Efternamn</string>
+    <string name="hint_surname">ex. Pelikansson</string>
+    <string name="text_identitynumber">Personnummer</string>
+    <string name="hint_identitynumber">ex. 19370128-0123</string>
+    <string name="text_streetaddress">Gatuadress</string>
+    <string name="hint_streetaddress">ex. Palmfeltsvägen 13</string>
+    <string name="text_postcode">Postnummer</string>
+    <string name="hint_postcode">ex. 121 62</string>
+    <string name="text_city">Bostadsort</string>
+    <string name="hint_city">ex. Johanneshov</string>
+    <string name="text_phonenumber">Mobilnummer</string>
+    <string name="hint_phonenumber">ex. 0735012345</string>
+    <string name="text_email">Email</string>
+    <string name="hint_email">ex. pellepelikan@sdur.se</string>
+    <string name="button_sendinformation">SKICKA UPPGIFTERNA</string>
 
     <string name="tab_text_2">EVENTS</string>
     <string name="text_minusandclock">, kl </string>

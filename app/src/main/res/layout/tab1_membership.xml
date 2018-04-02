@@ -1,72 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:layout_editor_absoluteY="81dp">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editText_member"
-        android:layout_width="0dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:fontFamily="@font/roboto_light"
-        android:hint="@string/hinttext_name"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView_yourName"
-        app:layout_constraintTop_toBottomOf="@+id/textView_yourName" />
-
-    <TextView
-        android:id="@+id/textView_yourName"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/text_yourName"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:isScrollContainer="true"
+        android:scrollbars="vertical"
+        tools:layout_editor_absoluteY="81dp">
 
-    <TextView
-        android:id="@+id/textView_memberCheck"
-        android:layout_width="0dp"
-        android:layout_height="161dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/text_style_3"
-        android:fontFamily="@font/roboto_black"
-        android:gravity="center"
-        android:text="@string/text_memberCheck"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
-        android:textSize="38sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView_yourName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_memberCheck"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/text_style_3"
+            android:fontFamily="@font/roboto_black"
+            android:gravity="center"
+            android:text="@string/text_memberCheck"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="38sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_checkMember"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto_medium"
-        android:padding="16dp"
-        android:text="@string/button_memberCheck"
-        android:textColor="@color/white"
-        android:theme="@style/AppTheme.Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_member" />
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_forename"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/text_forename"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_memberCheck"
+            app:layout_constraintTop_toBottomOf="@+id/tv_memberCheck" />
+
+        <EditText
+            android:id="@+id/et_forename"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_forename"
+            android:inputType="textPersonName"
+            android:textColorLink="@android:color/black"
+            android:textSize="24sp"
+            android:theme="@style/MyEditTextUnderlineColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_forename" />
+
+        <TextView
+            android:id="@+id/tv_surname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/text_surname"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/et_forename"
+            app:layout_constraintTop_toBottomOf="@+id/et_forename" />
+
+        <EditText
+            android:id="@+id/et_surname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_surname"
+            android:inputType="textPersonName"
+            android:textColorLink="@android:color/black"
+            android:textSize="24sp"
+            android:theme="@style/MyEditTextUnderlineColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_surname" />
+
+        <TextView
+            android:id="@+id/tv_identitynumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/text_identitynumber"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/et_surname"
+            app:layout_constraintTop_toBottomOf="@+id/et_surname" />
+
+        <EditText
+            android:id="@+id/et_identitynumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_identitynumber"
+            android:inputType="number"
+            android:textColorLink="@android:color/black"
+            android:textSize="24sp"
+            android:theme="@style/MyEditTextUnderlineColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_identitynumber" />
+
+        <TextView
+            android:id="@+id/tv_streetaddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/text_streetaddress"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/et_identitynumber"
+            app:layout_constraintTop_toBottomOf="@+id/et_identitynumber" />
+
+        <EditText
+            android:id="@+id/et_streetaddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_streetaddress"
+            android:inputType="textPostalAddress"
+            android:textColorLink="@android:color/black"
+            android:textSize="24sp"
+            android:theme="@style/MyEditTextUnderlineColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_streetaddress" />
+
+        <TextView
+            android:id="@+id/tv_postcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/text_postcode"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/et_streetaddress"
+            app:layout_constraintTop_toBottomOf="@+id/et_streetaddress" />
+
+        <EditText
+            android:id="@+id/et_postcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_postcode"
+            android:inputType="number"
+            android:textColorLink="@android:color/black"
+            android:textSize="24sp"
+            android:theme="@style/MyEditTextUnderlineColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_postcode" />
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/text_city"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/et_postcode"
+            app:layout_constraintTop_toBottomOf="@+id/et_postcode" />
+
+        <EditText
+            android:id="@+id/et_city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_city"
+            android:inputType="text"
+            android:textColorLink="@android:color/black"
+            android:textSize="24sp"
+            android:theme="@style/MyEditTextUnderlineColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_city" />
+
+        <TextView
+            android:id="@+id/tv_phonenumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/text_phonenumber"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/et_city"
+            app:layout_constraintTop_toBottomOf="@+id/et_city" />
+
+        <EditText
+            android:id="@+id/et_phonenumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_phonenumber"
+            android:inputType="phone"
+            android:textColorLink="@android:color/black"
+            android:textSize="24sp"
+            android:theme="@style/MyEditTextUnderlineColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_phonenumber" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/text_email"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/et_phonenumber"
+            app:layout_constraintTop_toBottomOf="@+id/et_phonenumber" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress"
+            android:textColorLink="@android:color/black"
+            android:textSize="24sp"
+            android:theme="@style/MyEditTextUnderlineColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+
+        <Button
+            android:id="@+id/button_send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/button_sendinformation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

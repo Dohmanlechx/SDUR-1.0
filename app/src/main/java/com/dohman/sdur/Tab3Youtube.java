@@ -114,6 +114,7 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
     // Method taking the user to the Facebook App,
     // or to the Facebook in browser if fails.
     public static Intent openFacebook(Context context) {
+        Log.d(TAG, "openFacebook: Starts.");
         try {
             context.getPackageManager()
                     .getPackageInfo("com.facebook.dohman", 0);
