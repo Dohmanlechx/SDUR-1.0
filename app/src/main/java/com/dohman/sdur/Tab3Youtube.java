@@ -68,7 +68,7 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         facebookIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(myContext, "Tar dig till Facebook...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(myContext, getString(R.string.toast_facebook), Toast.LENGTH_SHORT).show();
                 Intent facebookIntent = openFacebook(myContext);
                 startActivity(facebookIntent);
             }

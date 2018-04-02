@@ -3,7 +3,6 @@ package com.dohman.sdur;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,7 +40,7 @@ public class Tab2Events extends Fragment {
     private Event event;
 
     private DatabaseReference eventRef;
-    GradientDrawable shape;
+//    private GradientDrawable shape;
 
     // Creating an "myContext" from this method.
     @Override
@@ -62,11 +62,11 @@ public class Tab2Events extends Fragment {
         mEventList = new ArrayList<>();
 
         // Customize appearance for the arraylist.
-        shape = new GradientDrawable();
-        shape.setShape(GradientDrawable.RECTANGLE);
+//        shape = new GradientDrawable();
+//        shape.setShape(GradientDrawable.RECTANGLE);
 //        shape.setColor(getResources().getColor(R.color.colorAccent));
 //        shape.setStroke(5, getResources().getColor(R.color.colorAccent));
-        shape.setCornerRadius(10);
+//        shape.setCornerRadius(10);
 
         // Initializing the database.
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -87,13 +87,13 @@ public class Tab2Events extends Fragment {
                 Log.d(TAG, "onCreateView: Initializing the adapter...");
                 mEventListAdapter = new EventListAdapter(getContext(), mEventList);
                 mEventListView.setAdapter(mEventListAdapter);
-                mEventListView.setDividerHeight(5);
-                mEventListView.setBackground(shape);
+                mEventListView.setDividerHeight(8);
+//                mEventListView.setBackground(shape);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Log.e(TAG, "onCancelled: Error! " + databaseError);
             }
         });
 
@@ -101,12 +101,13 @@ public class Tab2Events extends Fragment {
         mEventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Do something
-                // Ex: display msg with product id get from view.getTag
-                // TODO Metoden funkar, men den använder senaste eventens länk. Jag vill ju att den ska läsa
-                // TODO in rätt länk. Men hur?
-                Intent facebookIntent = openFacebook(myContext, event.getLaenk());
-                startActivity(facebookIntent);
+                String url = mEventList.get(position).getLaenk();
+                Intent facebookIntent = openFacebook(myContext, url);
+                if (url.startsWith("http") || url.startsWith("www")) {
+                    startActivity(facebookIntent);
+                } else {
+                    Toast.makeText(myContext, getString(R.string.toast_nolink), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

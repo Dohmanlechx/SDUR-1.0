@@ -2,9 +2,11 @@
   <dictionary name="Dohman">
     <words>
       <w>arraylist</w>
+      <w>backgroundcolor</w>
       <w>identitynumber</w>
       <w>phonenumber</w>
       <w>streetaddress</w>
+      <w>textviews</w>
     </words>
   </dictionary>
 </component>

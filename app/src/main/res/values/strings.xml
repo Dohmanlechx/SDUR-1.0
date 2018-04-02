@@ -13,7 +13,7 @@
     <string name="text_surname">Efternamn</string>
     <string name="hint_surname">ex. Pelikansson</string>
     <string name="text_identitynumber">Personnummer</string>
-    <string name="hint_identitynumber">ex. 19370128-0123</string>
+    <string name="hint_identitynumber">ex. 19370614-0123</string>
     <string name="text_streetaddress">Gatuadress</string>
     <string name="hint_streetaddress">ex. Palmfeltsvägen 13</string>
     <string name="text_postcode">Postnummer</string>
@@ -27,11 +27,13 @@
     <string name="button_sendinformation">SKICKA UPPGIFTERNA</string>
 
     <string name="tab_text_2">EVENTS</string>
-    <string name="text_minusandclock">, kl </string>
+    <string name="text_commaandclock">, kl </string>
+    <string name="toast_nolink">Ingen länk finnes för eventen</string>
 
     <string name="tab_text_3">TEMA</string>
     <string name="header_du_bestammer">DU BESTÄMMER!</string>
     <string name="text_du_bestammer">Det är DU som medlem som bestämmer över SDUR, något som många glömt.
         Därför är vårt tema under 2018 ”DU BESTÄMMER”, det innebär att du som medlem kan komma med idéer
         eller önskemål på aktiviteter så ser vi till att uppfylla dina önskemål!</string>
+    <string name="toast_facebook">Tar dig till Facebook...</string>
 </resources>
