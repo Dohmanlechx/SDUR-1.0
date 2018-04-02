@@ -6,7 +6,7 @@ package com.dohman.sdur;
 
 public class Event {
     private int id;
-    private String name;
+    private String namn;
     private String infotext;
     private String datum;
     private String tid;
@@ -16,8 +16,8 @@ public class Event {
     public Event() {
     }
 
-    public Event(String name, String infotext, String datum, String tid, String plats, String laenk) {
-        this.name = name;
+    public Event(String namn, String infotext, String datum, String tid, String plats, String laenk) {
+        this.namn = namn;
         this.infotext = infotext;
         this.datum = datum;
         this.tid = tid;
@@ -33,12 +33,12 @@ public class Event {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNamn() {
+        return namn;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNamn(String namn) {
+        this.namn = namn;
     }
 
     public String getInfotext() {

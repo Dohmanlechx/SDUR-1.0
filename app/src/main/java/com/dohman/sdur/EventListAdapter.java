@@ -54,7 +54,7 @@ public class EventListAdapter extends BaseAdapter {
 
         // Setting text for those textviews.
         tvEventDate.setText(mEventList.get(position).getDatum());
-        tvEventName.setText(mEventList.get(position).getName());
+        tvEventName.setText(mEventList.get(position).getNamn());
         tvEventPlace.setText(mEventList.get(position).getPlats());
         tvEventClock.setText(mEventList.get(position).getTid());
         tvEventText.setText(mEventList.get(position).getInfotext());

@@ -31,8 +31,9 @@ public class Tab2Events extends Fragment {
     private ListView mEventListView;
     private EventListAdapter mEventListAdapter;
     private List<Event> mEventList;
+    private Event event;
 
-    private DatabaseReference ref;
+    private DatabaseReference eventRef;
 
     @Nullable
     @Override
@@ -45,27 +46,38 @@ public class Tab2Events extends Fragment {
         mEventList = new ArrayList<>();
 
         // TODO Koppla rätt och läsa in data, sen komma på snyggare sätt att koda
-        ref = FirebaseDatabase.getInstance().getReference().child("Events");
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        eventRef = database.getReference("Events");
 
-        ref.addValueEventListener(new ValueEventListener() {
+        //TODO Logd körs 4 ggr, vilket är rätt, problemet är nu bara att värdena returnerar null
+        // TODO alltså finns det 4 st children i Firebase
+
+        eventRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshotChildren : dataSnapshot.getChildren()) {
-                    Event event = dataSnapshot.getValue(Event.class);
-                    String tid = (String) dataSnapshot.child("tid").getValue();
-                    String infotext = (String) dataSnapshot.child("infotext").getValue();
-                    String date = (String) dataSnapshot.child("datum").getValue();
+                for (DataSnapshot children : dataSnapshot.getChildren()) {
+                    Log.d(TAG, "onDataChange: Starts.");
+                    event = children.getValue(Event.class);
+                    Log.d(TAG, "onDataChangeTEST: " + event.getNamn());
+//                    String name = children.child("namn").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Name: " + name);
+//                    event.setNamn(name);
+//                    String infotext = children.child("infotext").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Info: " + infotext);
+//                    event.setInfotext(infotext);
+//                    String date = children.child("datum").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Date: " + date);
+//                    event.setDatum(date);
+//                    String time = children.child("tid").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Time: " + time);
+//                    event.setTid(time);
+//                    String place = children.child("plats").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Place: " + place);
+//                    event.setPlats(place);
+//                    String link = children.child("laenk").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Link: " + link);
+//                    event.setLaenk(link);
                 }
-
-
-
-
-
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    Event event = ds.getValue(Event.class);
-//                    mEventList.add(event);
-//                    Log.d(TAG, "onDataChange: added activity: " + event.getLaenk());
-//                }
             }
 
             @Override
@@ -74,16 +86,58 @@ public class Tab2Events extends Fragment {
             }
         });
 
-        // TODO Lägga in alla events på en gång från Firebase med hjälp av en for loop.
+//        eventRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot children : dataSnapshot.getChildren()) {
+//                    Log.d(TAG, "onDataChange: Starts.");
+//                    Event event = children.getValue(Event.class);
+//                    String name = children.child("namn").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Name: " + name);
+//                    event.setNamn(name);
+//                    String infotext = children.child("infotext").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Info: " + infotext);
+//                    event.setInfotext(infotext);
+//                    String date = children.child("datum").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Date: " + date);
+//                    event.setDatum(date);
+//                    String time = children.child("tid").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Time: " + time);
+//                    event.setTid(time);
+//                    String place = children.child("plats").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Place: " + place);
+//                    event.setPlats(place);
+//                    String link = children.child("laenk").getValue(String.class);
+//                    Log.d(TAG, "onDataChange: Link: " + link);
+//                    event.setLaenk(link);
+//
+//                    mEventList.add(new Event(name, infotext, date, time, place, link));
+//
+////                    addEvent(event);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
-        // Event 1.
-//        mEventList.add();
+        // Testkoden nedanför funkar.
+//        for (int i = 0; mEventList.size())
+        if (event != null) {
+            mEventList.add(new Event(event.getNamn(), event.getInfotext(), event.getDatum(), event.getTid(), event.getPlats(), event.getLaenk()));
+        }
+        //        mEventList.add(new Event("textnamn", "textinfo", "testdatum", "testtid", "testplats","testlank"));
+
+
+        // TODO Lägga in alla events på en gång från Firebase med hjälp av en for loop.
 
         GradientDrawable shape = new GradientDrawable();
         shape.setShape(GradientDrawable.RECTANGLE);
         shape.setColor(getResources().getColor(R.color.colorAccent));
-//        shape.setStroke(5, getResources().getColor(R.color.colorAccent));
-//        shape.setCornerRadius(50);
+        shape.setStroke(5, getResources().getColor(R.color.colorAccent));
+        shape.setCornerRadius(10);
 
         // Initializing the adapter.
         Log.d(TAG, "onCreateView: Initializing the adapter...");
@@ -105,4 +159,9 @@ public class Tab2Events extends Fragment {
         Log.d(TAG, "onCreateView: Ends.");
         return tab2view;
     }
+
+//    private void addEvent(Event event) {
+//        Log.d(TAG, "addEvent: Starts.");
+//        mEventList.add(event);
+//    }
 }
