@@ -22,6 +22,8 @@ en särskild plats i onDataChange.
 Ett problem som jag har just nu är att när jag klickar på en cardviews tillhörande url 
 kommer jag till senaste eventens url istället. Jag ska nu komma på ett sätt att man ska 
 komma till rätt url, inte den senast inlästa events url. Återkommer med lösning.
+Lösning: String url = mEventList.get(position).getLaenk();
+Det är "get(position)" som plockar fram den eventens länk.
 
 ----------------------------------------------------------------------------------
 
