@@ -13,5 +13,15 @@ Skrotade idén med att ha med i bilder, kändes som för mycket jobb och kändes
 opraktiskt både för mig och för dem som ska lägga info i databasen. Kör istället
 på RelativeLayout och GradientDrawable. Blir snygga rutor.
 
+Hade en massa problem med Firebase, men löste problem efter problem. Första steget 
+var att testa om koden faktiskt läser in data från DB, när det gjort det, tar jag det 
+till nästa steg och försöker integrera det till min arraylist (cardview list typ) osv.
+Jobbade länge med det sistnämnda men lösningen var enkel, koden skulle minsann vara på 
+en särskild plats i onDataChange.
+
+Ett problem som jag har just nu är att när jag klickar på en cardviews tillhörande url 
+kommer jag till senaste eventens url istället. Jag ska nu komma på ett sätt att man ska 
+komma till rätt url, inte den senast inlästa events url. Återkommer med lösning.
+
 ----------------------------------------------------------------------------------
 
