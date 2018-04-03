@@ -25,5 +25,9 @@ komma till rätt url, inte den senast inlästa events url. Återkommer med lösn
 Lösning: String url = mEventList.get(position).getLaenk();
 Det är "get(position)" som plockar fram den eventens länk.
 
+Hade problem med att visa events i rätt datumlösning men lösningen var enkel. Children
+skulle inte heta tex "Påsklov 2018" utan faktiskt ha datum tex "2018-04-03" så blir det
+rätt direkt. Sjukt enkel lösning!
+
 ----------------------------------------------------------------------------------
 
