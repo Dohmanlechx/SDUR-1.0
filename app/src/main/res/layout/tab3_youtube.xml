@@ -1,67 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tab3_youtube"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimaryDarkTransparent">
 
-    <FrameLayout
-        android:id="@+id/youtube_fragment_container"
-        android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></FrameLayout>
-
-    <TextView
-        android:id="@+id/tv_header_du_bestammer"
-        android:layout_width="0dp"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/tab3_youtube"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/text_style"
-        android:fontFamily="@font/roboto_black"
-        android:gravity="start"
-        android:paddingEnd="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="16dp"
-        android:paddingStart="8dp"
-        android:paddingTop="20dp"
-        android:text="@string/header_du_bestammer"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorAccent"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/youtube_fragment_container" />
+        android:background="@color/transparent">
 
-    <TextView
-        android:id="@+id/tv_du_bestammer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/text_style_2"
-        android:fontFamily="@font/roboto_bold"
-        android:gravity="start"
-        android:lineSpacingExtra="2dp"
-        android:text="@string/text_du_bestammer"
-        android:textAlignment="textStart"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_header_du_bestammer" />
+        <TextView
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/youtube_fragment_container"/>
 
-    <ImageView
-        android:id="@+id/facebook_icon"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorAccent"
-        android:padding="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_du_bestammer"
-        app:srcCompat="@drawable/facebook_icon" />
+        <FrameLayout
+            android:id="@+id/youtube_fragment_container"
+            android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></FrameLayout>
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_header_du_bestammer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/transparent"
+            android:fontFamily="@font/notosans_semibold"
+            android:gravity="start"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:text="@string/header_du_bestammer"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorAccent"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/tv_du_bestammer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/transparent"
+            android:fontFamily="@font/notosans_regular"
+            android:gravity="start"
+            android:text="@string/text_du_bestammer"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_header_du_bestammer" />
+
+        <!--<ImageView-->
+        <!--android:id="@+id/facebook_icon"-->
+        <!--android:layout_width="52dp"-->
+        <!--android:layout_height="52dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--android:padding="2dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/tv_du_bestammer"-->
+        <!--app:srcCompat="@drawable/facebook_icon" />-->
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

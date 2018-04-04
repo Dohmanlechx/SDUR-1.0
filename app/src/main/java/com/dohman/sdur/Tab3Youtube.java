@@ -64,11 +64,10 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
 
         // Finding the Facebook button and making it clickable.
         // It takes the user to the Facebook-app and the group there.
-        facebookIcon = tab3view.findViewById(R.id.facebook_icon);
-        facebookIcon.setOnClickListener(new View.OnClickListener() {
+        textViewDBText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(myContext, getString(R.string.toast_facebook), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(myContext, getString(R.string.toast_facebook), Toast.LENGTH_SHORT).show();
                 Intent facebookIntent = openFacebook(myContext);
                 startActivity(facebookIntent);
             }

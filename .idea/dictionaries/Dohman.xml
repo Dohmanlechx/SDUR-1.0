@@ -6,6 +6,7 @@
       <w>identitynumber</w>
       <w>phonenumber</w>
       <w>streetaddress</w>
+      <w>textview</w>
       <w>textviews</w>
     </words>
   </dictionary>

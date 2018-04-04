@@ -9,8 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -24,8 +27,10 @@ public class Tab1Membership extends Fragment {
 
     private Member member;
 
-    private String regexString = "^[0-9]*$";
+//    private String regexString = "^[0-9]*$";
 
+    private TextView tv;
+    private Spinner genderSpinner;
     private EditText etForename;
     private EditText etSurname;
     private EditText etIdentitynumber;
@@ -36,6 +41,7 @@ public class Tab1Membership extends Fragment {
     private EditText etEmail;
     private String foreName;
     private String surName;
+    private String gender;
     private String identityNumber;
     private String streetAddress;
     private String postCode;
@@ -61,6 +67,16 @@ public class Tab1Membership extends Fragment {
 
         //TODO Gör en validation för email, mobilnummer, postkod
 
+        // Finding the big textview and applying backgroundcolor.
+        tv = tab1view.findViewById(R.id.tv_memberCheck);
+        tv.setBackgroundResource(R.drawable.text_style_3);
+
+        // Finding the gender-spinner and adding values.
+        genderSpinner = tab1view.findViewById(R.id.spinner_gender);
+        String[] genderList = new String[]{getString(R.string.gender_man), getString(R.string.gender_woman), getString(R.string.gender_intergender)};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), R.layout.spinner_item, genderList);
+        genderSpinner.setAdapter(adapter);
+
         // Finding the edittexts.
         etForename = tab1view.findViewById(R.id.et_forename);
         etSurname = tab1view.findViewById(R.id.et_surname);
@@ -83,7 +99,7 @@ public class Tab1Membership extends Fragment {
                 if (identitynumberCheck() && areAllFieldsFilled()) {
                     Log.d(TAG, "onClick: CONGRATS!");
                     // Creating the member.
-                    member = new Member(foreName, surName, identityNumber,
+                    member = new Member(foreName, surName, gender, identityNumber,
                             streetAddress, postCode, city, phoneNumber, email);
                 }
             }
@@ -99,12 +115,13 @@ public class Tab1Membership extends Fragment {
         try {
             foreName = etForename.getText().toString();
             surName = etSurname.getText().toString();
+            gender = genderSpinner.getSelectedItem().toString();
+            identityNumber = etIdentitynumber.getText().toString();
             streetAddress = etStreetaddress.getText().toString();
             postCode = etPostcode.getText().toString();
             city = etCity.getText().toString();
             phoneNumber = etPhonenumber.getText().toString();
             email = etEmail.getText().toString();
-            identityNumber = etIdentitynumber.getText().toString();
         } catch (NumberFormatException e) {
             Log.e(TAG, "onCreateView: NumberFormatException", e);
         }

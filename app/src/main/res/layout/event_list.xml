@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_eventdate"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/notosans_semibold"
         android:paddingRight="4dp"
         android:text="@string/text_commaandclock"
         android:textColor="@color/colorText"
@@ -20,7 +20,7 @@
         android:id="@+id/tv_eventdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/notosans_semibold"
         android:text="2018-03-12"
         android:textColor="@color/colorText"
         android:textSize="22sp" />
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_eventdate"
-        android:fontFamily="@font/roboto_black"
+        android:fontFamily="@font/notosans_extrabold"
         android:paddingTop="4dp"
         android:text="Go-kart!"
         android:textColor="@color/colorText"
@@ -43,7 +43,7 @@
         android:layout_above="@id/tv_eventtext"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/tv_eventname"
-        android:fontFamily="@font/roboto_mediumitalic"
+        android:fontFamily="@font/notosans_extrabold"
         android:gravity="center_horizontal"
         android:text="Hejvägen 17, Alvik"
         android:textAlignment="center"
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_minusandclock"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/notosans_semibold"
         android:text="13:00"
         android:textColor="@color/colorText"
         android:textSize="22sp" />
@@ -65,10 +65,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_eventname"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/notosans_light"
         android:text="Vi åker gokart! Vi träffas vid McDonalds i Alvik! Pris medlem: 100 kr, Icke medlem: 400 kr"
         android:textColor="@color/colorText"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tv_eventlink"

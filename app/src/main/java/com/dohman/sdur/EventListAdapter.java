@@ -62,9 +62,9 @@ public class EventListAdapter extends BaseAdapter {
 
         // Alternate backgroundcolor for the "cards".
         if (position % 2 == 0) {
-            view.setBackgroundColor(view.getResources().getColor(R.color.colorPrimaryDark));
+            view.setBackgroundColor(view.getResources().getColor(R.color.colorPrimaryDarkTransparent));
         } else {
-            view.setBackgroundColor(view.getResources().getColor(R.color.colorPrimary));
+            view.setBackgroundColor(view.getResources().getColor(R.color.colorPrimaryTransparent));
         }
 
         // Saving event id to tag.
