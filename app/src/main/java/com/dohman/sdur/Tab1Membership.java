@@ -36,7 +36,7 @@ public class Tab1Membership extends Fragment {
     private EditText etEmail;
     private String foreName;
     private String surName;
-    private int identityNumber;
+    private String identityNumber;
     private String streetAddress;
     private String postCode;
     private String city;
@@ -59,6 +59,8 @@ public class Tab1Membership extends Fragment {
         // Connects to the right layout file.
         View tab1view = inflater.inflate(R.layout.tab1_membership, container, false);
 
+        //TODO Gör en validation för email, mobilnummer, postkod
+
         // Finding the edittexts.
         etForename = tab1view.findViewById(R.id.et_forename);
         etSurname = tab1view.findViewById(R.id.et_surname);
@@ -78,26 +80,20 @@ public class Tab1Membership extends Fragment {
                 setValues();
                 // Setting the values if everything was correctly written,
                 // especially the identity number.
-                if (identitynumberCheck()) {
+                if (identitynumberCheck() && areAllFieldsFilled()) {
                     Log.d(TAG, "onClick: CONGRATS!");
                     // Creating the member.
                     member = new Member(foreName, surName, identityNumber,
                             streetAddress, postCode, city, phoneNumber, email);
-                } else {
-                    Toast.makeText(myContext, "incorrect personnr", Toast.LENGTH_SHORT).show();
                 }
-//                testShow();
             }
         });
 
         return tab1view;
     }
 
-//    void testShow() {
-//        Log.d(TAG, "testShow: " + member.getEmail());
-//    }
-
     private void setValues() {
+        Log.d(TAG, "setValues: Starts.");
         // Needs try/catch statement because of the NumberFormatException error (null)
         // since I don't want the app to crash at any point.
         try {
@@ -108,31 +104,25 @@ public class Tab1Membership extends Fragment {
             city = etCity.getText().toString();
             phoneNumber = etPhonenumber.getText().toString();
             email = etEmail.getText().toString();
-            identityNumber = Integer.parseInt(etIdentitynumber.getText().toString());
+            identityNumber = etIdentitynumber.getText().toString();
         } catch (NumberFormatException e) {
             Log.e(TAG, "onCreateView: NumberFormatException", e);
         }
-//
-//        // Creating the member.
-//        member = new Member(foreName, surName, identityNumber,
-//                streetAddress, postCode, city, phoneNumber, email);
     }
 
     private boolean identitynumberCheck() {
+        Log.d(TAG, "identitynumberCheck: Starts.");
         int month, day, lastDigit;
-        boolean validation;
 
-        //TODO Prova skriva in 10 siffror först för att se om validationen funkar
+        // Validationen funkar med 10 siffror!
         //TODO Hitta på ett sätt att ta bort de två första siffrorna innan
         //TODO validationen körs!
-        int tempIdentityNumber = Integer.parseInt(Integer.toString(identityNumber).substring(2));
-        Log.d(TAG, "identitynumberCheck: " + tempIdentityNumber);
 
         // First validation. If valid proceed to next validation.
-        if (Integer.toString(identityNumber).length() == 10) {
-            month = Integer.parseInt(Integer.toString(identityNumber).substring(2, 4));
-            day = Integer.parseInt(Integer.toString(identityNumber).substring(4, 6));
-            lastDigit = Integer.parseInt(Integer.toString(identityNumber).substring(9, 10));
+        if (identityNumber.length() == 10) {
+            month = Integer.parseInt(identityNumber.substring(2, 4));
+            day = Integer.parseInt(identityNumber.substring(4, 6));
+            lastDigit = Integer.parseInt(identityNumber.substring(9, 10));
 
             // Second validation. If valid proceed to next validation.
             if (month > 00 && day > 00 && month <= 12 && day <= 31) {
@@ -141,11 +131,11 @@ public class Tab1Membership extends Fragment {
                 int addedNumbers = 0;
                 String multipliedNumbers = "";
 
-                // Calculates the security number with the following code segments
+                // Calculates the security number with the following code segments.
                 // Alternately multiplies then numbers in the identitynumber with 2 and 1
                 // excluding the last number. Finally the result is stored.
-                for (int i = 0; i < Integer.toString(identityNumber).length() - 1; i++) {
-                    int n = Character.getNumericValue(Integer.toString(identityNumber).charAt(i));
+                for (int i = 0; i < identityNumber.length() - 1; i++) {
+                    int n = Character.getNumericValue(identityNumber.charAt(i));
 
                     if ((i % 2) != 0) {
                         //Odd
@@ -156,11 +146,11 @@ public class Tab1Membership extends Fragment {
                     }
                     multipliedNumbers += n;
                 }
-                // Loops through each digit and adds them together into an integer
+                // Loops through each digit and adds them together into an integer.
                 for (int k = 0; k < multipliedNumbers.length(); k++) {
                     addedNumbers += Character.getNumericValue(multipliedNumbers.charAt(k));
                 }
-                // Subtracts (the last digit from the added integer above) from 10
+                // Subtracts the last digit from the added integer above from 10.
                 residualNumber = 10 - (addedNumbers % 10);
 
                 // If residual number equals 10 then security number will be 0,
@@ -170,21 +160,32 @@ public class Tab1Membership extends Fragment {
                 } else {
                     securityNumber = residualNumber;
                 }
-                // Final validation. If the last digit from persnr
+                // Final validation. If the last digit from the identitynumber
                 // equals the calculated security number then it is valid.
-                // else it is invalid.
+                // Else it is invalid.
                 if (lastDigit == securityNumber) {
-                    validation = true;
-                } else {
-                    validation = false;
+                    return true;
                 }
-            } else {
-                validation = false;
             }
-        } else {
-            validation = false;
         }
+        Toast.makeText(myContext, getString(R.string.toast_incorrect_identitynumber), Toast.LENGTH_SHORT).show();
+        return false;
+    }
 
-        return validation;
+    private boolean areAllFieldsFilled() {
+        Log.d(TAG, "areAllFieldsFilled: Starts.");
+        if (!foreName.equals("")
+                && !surName.equals("")
+                && !identityNumber.equals("")
+                && !streetAddress.equals("")
+                && !postCode.equals("")
+                && !city.equals("")
+                && !phoneNumber.equals("")
+                && !email.equals("")) {
+            return true;
+        } else {
+            Toast.makeText(myContext, getString(R.string.toast_notAllFieldsAreFilled), Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 }

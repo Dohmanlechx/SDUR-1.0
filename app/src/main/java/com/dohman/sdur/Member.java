@@ -3,7 +3,7 @@ package com.dohman.sdur;
 public class Member {
     private String forename;
     private String surname;
-    private int identitynumber;
+    private String identitynumber;
     private String streetaddress;
     private String postcode;
     private String city;
@@ -13,7 +13,7 @@ public class Member {
     public Member() {
     }
 
-    public Member(String forename, String surname, int identitynumber, String streetaddress, String postcode, String city, String phonenumber, String email) {
+    public Member(String forename, String surname, String identitynumber, String streetaddress, String postcode, String city, String phonenumber, String email) {
         this.forename = forename;
         this.surname = surname;
         this.identitynumber = identitynumber;
@@ -40,11 +40,11 @@ public class Member {
         this.surname = surname;
     }
 
-    public int getIdentitynumber() {
+    public String getIdentitynumber() {
         return identitynumber;
     }
 
-    public void setIdentitynumber(int identitynumber) {
+    public void setIdentitynumber(String identitynumber) {
         this.identitynumber = identitynumber;
     }
 

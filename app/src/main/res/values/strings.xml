@@ -25,6 +25,8 @@
     <string name="text_email">Email</string>
     <string name="hint_email">ex. pellepelikan@sdur.se</string>
     <string name="button_sendinformation">SKICKA UPPGIFTERNA</string>
+    <string name="toast_incorrect_identitynumber">Personnumret är inkorrekt</string>
+    <string name="toast_notAllFieldsAreFilled">Du har inte fyllt i allt</string>
 
     <string name="tab_text_2">EVENTS</string>
     <string name="text_commaandclock">, kl </string>
