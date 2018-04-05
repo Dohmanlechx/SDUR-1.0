@@ -1,7 +1,13 @@
 package com.dohman.sdur;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -78,7 +84,7 @@ public class Tab1Membership extends Fragment {
         etForename = tab1view.findViewById(R.id.et_forename);
         etSurname = tab1view.findViewById(R.id.et_surname);
         etIdentitynumber = tab1view.findViewById(R.id.et_identitynumber);
-        etStreetaddress = tab1view.findViewById(R.id.et_identitynumber);
+        etStreetaddress = tab1view.findViewById(R.id.et_streetaddress);
         etPostcode = tab1view.findViewById(R.id.et_postcode);
         etCity = tab1view.findViewById(R.id.et_city);
         etPhonenumber = tab1view.findViewById(R.id.et_phonenumber);
@@ -90,6 +96,9 @@ public class Tab1Membership extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO token och callbackurl?
+//                startSwish(myContext, "f34DS34lfd0d03fdDselkfd3ffk21", "back_scheme", 0);
+
                 // Saving what the user had written.
                 setValues();
                 // Setting the values if everything was correctly written,
@@ -97,12 +106,9 @@ public class Tab1Membership extends Fragment {
                 // It checks first if all fields are filled before running those validations, to avoid crashes.
                 if (areAllFieldsFilled()) {
                     if (identitynumberCheck() && validEmail(email) && validPhoneNumber() && validPostCode()) {
-
-                        //TODO Göra så att allt skickas i ett email
-                        Log.d(TAG, "onClick: CONGRATS!");
                         // Creating the member.
-                        member = new Member(foreName, surName, gender, identityNumber,
-                                streetAddress, postCode, city, phoneNumber, email);
+                        member = new Member(foreName, surName, gender, identityNumber, streetAddress, postCode, city, phoneNumber, email);
+                        doubleCheck();
                     }
                 }
             }
@@ -124,6 +130,18 @@ public class Tab1Membership extends Fragment {
             }
 
             etPostcode.setText(addSpace.toString());
+        }
+
+        // Adding - to the identity number if missing.
+        if (etIdentitynumber.getText().toString().length() == 12) {
+            StringBuilder addMinus;
+            addMinus = new StringBuilder(etIdentitynumber.getText().toString());
+
+            for (int i = 8; i < addMinus.length(); i += 9) {
+                addMinus.insert(i, "-");
+            }
+
+            etIdentitynumber.setText(addMinus.toString());
         }
 
         // Needs try/catch statement because of the NumberFormatException error (null)
@@ -250,5 +268,63 @@ public class Tab1Membership extends Fragment {
 
         Toast.makeText(myContext, getString(R.string.toast_incorrect_postcode), Toast.LENGTH_SHORT).show();
         return false;
+    }
+
+    private void doubleCheck() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(myContext, AlertDialog.THEME_HOLO_DARK);
+        builder.setCancelable(true);
+        builder.setTitle(getString(R.string.alert_title));
+        builder.setMessage(getString(R.string.alert_forename) + member.getForename() + "\n" + getString(R.string.alert_surname) + member.getSurname() + "\n"
+                + getString(R.string.alert_gender) + member.getGender() + "\n" + getString(R.string.alert_identitynumber) + member.getIdentitynumber() + "\n"
+                + getString(R.string.alert_streetaddress) + member.getStreetaddress() + "\n" + getString(R.string.alert_postcode) + member.getPostcode() + "\n"
+                + getString(R.string.alert_city) + member.getCity() + "\n" + getString(R.string.alert_phonenumber) + member.getPhonenumber() + "\n"
+                + getString(R.string.alert_email) + member.getEmail());
+        builder.setNegativeButton(getString(R.string.alert_cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setPositiveButton(getString(R.string.alert_ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
+                    //TODO token och callbackurl?
+                    startSwish(myContext, "5", "back_scheme", 0);
+                }
+            }
+        });
+        builder.show();
+    }
+
+    // Swish package name is "se.bankgirot.swish".
+    protected boolean isSwishAppInstalled(Context context, String SwishPackageName) {
+        boolean isSwishInstalled = false;
+        try {
+            context.getPackageManager().getApplicationInfo(SwishPackageName, 0);
+            isSwishInstalled = true;
+        } catch (PackageManager.NameNotFoundException e) {
+
+        }
+
+        return isSwishInstalled;
+    }
+
+    public static boolean startSwish(Activity activity, String token, String callBackUrl, int requestCode) {
+        if (token == null || token.length() == 0 || callBackUrl == null || callBackUrl.length() == 0 || activity == null) {
+            return false;
+        }
+        Uri scheme = Uri.parse("swish://paymentrequest?token=" + token + "&callbackurl=" + callBackUrl);
+        Intent intent = new Intent(Intent.ACTION_VIEW, scheme);
+        intent.setPackage("se.bankgirot.swish");
+        boolean started = true;
+
+        try {
+            activity.startActivityForResult(intent, requestCode);
+        } catch (Exception e) {
+            started = false;
+        }
+
+        return started;
     }
 }

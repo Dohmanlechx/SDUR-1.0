@@ -37,47 +37,23 @@ public class Event {
         return namn;
     }
 
-    public void setNamn(String namn) {
-        this.namn = namn;
-    }
-
     public String getInfotext() {
         return infotext;
-    }
-
-    public void setInfotext(String infotext) {
-        this.infotext = infotext;
     }
 
     public String getDatum() {
         return datum;
     }
 
-    public void setDatum(String datum) {
-        this.datum = datum;
-    }
-
     public String getTid() {
         return tid;
-    }
-
-    public void setTid(String tid) {
-        this.tid = tid;
     }
 
     public String getPlats() {
         return plats;
     }
 
-    public void setPlats(String plats) {
-        this.plats = plats;
-    }
-
     public String getLaenk() {
         return laenk;
-    }
-
-    public void setLaenk(String laenk) {
-        this.laenk = laenk;
     }
 }

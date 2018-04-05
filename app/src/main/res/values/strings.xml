@@ -35,6 +35,18 @@
     <string name="toast_incorrect_email">Emailadressen är inkorrekt</string>
     <string name="toast_incorrect_phone">Mobilnumret är inkorrekt</string>
     <string name="toast_incorrect_postcode">Postkoden är inkorrekt</string>
+    <string name="alert_title">Kontrollera uppgifterna!</string>
+    <string name="alert_cancel">TILLBAKA</string>
+    <string name="alert_ok">ALLT ÄR KORREKT</string>
+    <string name="alert_forename">Förnamn:\u0020</string>
+    <string name="alert_surname">Efternamn:\u0020</string>
+    <string name="alert_gender">Kön:\u0020</string>
+    <string name="alert_identitynumber">Personnummer:\u0020</string>
+    <string name="alert_streetaddress">Gatuadress:\u0020</string>
+    <string name="alert_postcode">Postkod:\u0020</string>
+    <string name="alert_city">Bostadsort:\u0020</string>
+    <string name="alert_phonenumber">Mobilnummer:\u0020</string>
+    <string name="alert_email">Email:\u0020</string>
 
     <string name="tab_text_2">EVENTS</string>
     <string name="text_commaandclock">, kl </string>
