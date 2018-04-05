@@ -77,7 +77,7 @@ public class Tab2Events extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d(TAG, "onDataChange: Starts.");
-//                mEventList.clear();
+                mEventList.clear();
                 // Going through all the children.
                 for (DataSnapshot children : dataSnapshot.getChildren()) {
                     event = children.getValue(Event.class);

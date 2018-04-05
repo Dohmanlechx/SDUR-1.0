@@ -39,6 +39,7 @@
     <string name="tab_text_2">EVENTS</string>
     <string name="text_commaandclock">, kl </string>
     <string name="toast_nolink">Ingen länk finnes för eventen</string>
+    <string name="toast_updatedlist">Listan har just uppdaterats</string>
 
     <string name="tab_text_3">TEMA</string>
     <string name="header_du_bestammer">DU BESTÄMMER!</string>

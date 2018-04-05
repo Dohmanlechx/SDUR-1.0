@@ -1,6 +1,7 @@
 package com.dohman.sdur;
 
 import android.app.Activity;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -85,6 +86,7 @@ public class Tab1Membership extends Fragment {
 
         // Finding the button and setting listener.
         mButton = tab1view.findViewById(R.id.button_send);
+        mButton.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.MULTIPLY);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

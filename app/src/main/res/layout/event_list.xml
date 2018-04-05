@@ -42,13 +42,14 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/tv_eventtext"
         android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_eventclock"
         android:layout_toRightOf="@id/tv_eventname"
         android:fontFamily="@font/notosans_extrabold"
         android:gravity="center_horizontal"
         android:text="Hejvägen 17, Alvik"
         android:textAlignment="center"
         android:textColor="@color/colorText"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tv_eventclock"
