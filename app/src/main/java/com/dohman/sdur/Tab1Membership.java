@@ -27,8 +27,6 @@ public class Tab1Membership extends Fragment {
 
     private Member member;
 
-//    private String regexString = "^[0-9]*$";
-
     private TextView tv;
     private Spinner genderSpinner;
     private EditText etForename;
@@ -65,8 +63,6 @@ public class Tab1Membership extends Fragment {
         // Connects to the right layout file.
         View tab1view = inflater.inflate(R.layout.tab1_membership, container, false);
 
-        //TODO Gör en validation för email, mobilnummer, postkod
-
         // Finding the big textview and applying backgroundcolor.
         tv = tab1view.findViewById(R.id.tv_memberCheck);
         tv.setBackgroundResource(R.drawable.text_style_3);
@@ -96,11 +92,14 @@ public class Tab1Membership extends Fragment {
                 setValues();
                 // Setting the values if everything was correctly written,
                 // especially the identity number.
-                if (identitynumberCheck() && areAllFieldsFilled()) {
-                    Log.d(TAG, "onClick: CONGRATS!");
-                    // Creating the member.
-                    member = new Member(foreName, surName, gender, identityNumber,
-                            streetAddress, postCode, city, phoneNumber, email);
+                // It checks first if all fields are filled before those validations, to avoid crashes.
+                if (areAllFieldsFilled()) {
+                    if (identitynumberCheck() && validEmail(email) && validPhoneNumber() && validPostCode()) {
+                        Log.d(TAG, "onClick: CONGRATS!");
+                        // Creating the member.
+                        member = new Member(foreName, surName, gender, identityNumber,
+                                streetAddress, postCode, city, phoneNumber, email);
+                    }
                 }
             }
         });
@@ -110,6 +109,19 @@ public class Tab1Membership extends Fragment {
 
     private void setValues() {
         Log.d(TAG, "setValues: Starts.");
+
+        // Adding space for the post code if written without any.
+        if (etPostcode.getText().toString().length() == 5) {
+            StringBuilder addSpace;
+            addSpace = new StringBuilder(etPostcode.getText().toString());
+
+            for (int i = 3; i < addSpace.length(); i += 5) {
+                addSpace.insert(i, " ");
+            }
+
+            etPostcode.setText(addSpace.toString());
+        }
+
         // Needs try/catch statement because of the NumberFormatException error (null)
         // since I don't want the app to crash at any point.
         try {
@@ -131,15 +143,16 @@ public class Tab1Membership extends Fragment {
         Log.d(TAG, "identitynumberCheck: Starts.");
         int month, day, lastDigit;
 
-        // Validationen funkar med 10 siffror!
-        //TODO Hitta på ett sätt att ta bort de två första siffrorna innan
-        //TODO validationen körs!
+        // Creating a temporary string where the - and the two first digits are removed.
+        String tempIdentityNumber;
+        tempIdentityNumber = identityNumber.replaceFirst("-", "");
+        tempIdentityNumber = tempIdentityNumber.substring(2);
 
         // First validation. If valid proceed to next validation.
-        if (identityNumber.length() == 10) {
-            month = Integer.parseInt(identityNumber.substring(2, 4));
-            day = Integer.parseInt(identityNumber.substring(4, 6));
-            lastDigit = Integer.parseInt(identityNumber.substring(9, 10));
+        if (identityNumber.length() == 13) {
+            month = Integer.parseInt(tempIdentityNumber.substring(2, 4));
+            day = Integer.parseInt(tempIdentityNumber.substring(4, 6));
+            lastDigit = Integer.parseInt(tempIdentityNumber.substring(9, 10));
 
             // Second validation. If valid proceed to next validation.
             if (month > 00 && day > 00 && month <= 12 && day <= 31) {
@@ -151,8 +164,8 @@ public class Tab1Membership extends Fragment {
                 // Calculates the security number with the following code segments.
                 // Alternately multiplies then numbers in the identitynumber with 2 and 1
                 // excluding the last number. Finally the result is stored.
-                for (int i = 0; i < identityNumber.length() - 1; i++) {
-                    int n = Character.getNumericValue(identityNumber.charAt(i));
+                for (int i = 0; i < tempIdentityNumber.length() - 1; i++) {
+                    int n = Character.getNumericValue(tempIdentityNumber.charAt(i));
 
                     if ((i % 2) != 0) {
                         //Odd
@@ -204,5 +217,34 @@ public class Tab1Membership extends Fragment {
             Toast.makeText(myContext, getString(R.string.toast_notAllFieldsAreFilled), Toast.LENGTH_SHORT).show();
             return false;
         }
+    }
+
+    private boolean validEmail(CharSequence checkEmail) {
+        if (checkEmail == null) {
+            return false;
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(checkEmail).matches()) {
+            Toast.makeText(myContext, getString(R.string.toast_incorrect_email), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(checkEmail).matches();
+    }
+
+    private boolean validPhoneNumber() {
+        if (phoneNumber.length() == 10) {
+            return true;
+        }
+
+        Toast.makeText(myContext, getString(R.string.toast_incorrect_phone), Toast.LENGTH_SHORT).show();
+        return false;
+    }
+
+    private boolean validPostCode() {
+        if (postCode.length() == 6) {
+            return true;
+        }
+
+        Toast.makeText(myContext, getString(R.string.toast_incorrect_postcode), Toast.LENGTH_SHORT).show();
+        return false;
     }
 }

@@ -32,6 +32,9 @@
     <string name="button_sendinformation">SKICKA UPPGIFTERNA</string>
     <string name="toast_incorrect_identitynumber">Personnumret är inkorrekt</string>
     <string name="toast_notAllFieldsAreFilled">Du har inte fyllt i allt</string>
+    <string name="toast_incorrect_email">Emailadressen är inkorrekt</string>
+    <string name="toast_incorrect_phone">Mobilnumret är inkorrekt</string>
+    <string name="toast_incorrect_postcode">Postkoden är inkorrekt</string>
 
     <string name="tab_text_2">EVENTS</string>
     <string name="text_commaandclock">, kl </string>
