@@ -71,7 +71,7 @@ public class Tab1Membership extends Fragment {
         // Finding the gender-spinner and adding values.
         genderSpinner = tab1view.findViewById(R.id.spinner_gender);
         String[] genderList = new String[]{getString(R.string.gender_man), getString(R.string.gender_woman), getString(R.string.gender_intergender)};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), R.layout.spinner_item, genderList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(myContext, R.layout.spinner_item, genderList);
         genderSpinner.setAdapter(adapter);
 
         // Finding the edittexts.
@@ -86,7 +86,7 @@ public class Tab1Membership extends Fragment {
 
         // Finding the button and setting listener.
         mButton = tab1view.findViewById(R.id.button_send);
-        mButton.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.MULTIPLY);
+        mButton.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimaryDarkTransparent), PorterDuff.Mode.MULTIPLY);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,9 +94,11 @@ public class Tab1Membership extends Fragment {
                 setValues();
                 // Setting the values if everything was correctly written,
                 // especially the identity number.
-                // It checks first if all fields are filled before those validations, to avoid crashes.
+                // It checks first if all fields are filled before running those validations, to avoid crashes.
                 if (areAllFieldsFilled()) {
                     if (identitynumberCheck() && validEmail(email) && validPhoneNumber() && validPostCode()) {
+
+                        //TODO Göra så att allt skickas i ett email
                         Log.d(TAG, "onClick: CONGRATS!");
                         // Creating the member.
                         member = new Member(foreName, surName, gender, identityNumber,
@@ -117,7 +119,7 @@ public class Tab1Membership extends Fragment {
             StringBuilder addSpace;
             addSpace = new StringBuilder(etPostcode.getText().toString());
 
-            for (int i = 3; i < addSpace.length(); i += 5) {
+            for (int i = 3; i < addSpace.length(); i += 4) {
                 addSpace.insert(i, " ");
             }
 

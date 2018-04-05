@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@color/transparent"
-            android:fontFamily="@font/notosans_semibold"
+            android:fontFamily="@font/notosans_extrabold"
             android:gravity="start"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
