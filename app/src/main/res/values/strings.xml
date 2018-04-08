@@ -5,7 +5,6 @@
 
     <string name="tab_text_1">BLI MEDLEM</string>
     <string name="hinttext_name">ex. Pelle Pelikansson</string>
-    <string name="text_yourName">Skriv ditt namn</string>
     <string name="text_memberCheck">Här kan du bli medlem hos oss! När du fyllt i alla fält kommer du till Swish-appen där du betalar
         för medlemskapet. Det kan ta ett par dagar tills du är helt registrerad som medlem! Tack för ditt engagemang!</string>
     <string name="button_memberCheck">Kontrollera</string>
@@ -47,6 +46,10 @@
     <string name="alert_city">Bostadsort:\u0020</string>
     <string name="alert_phonenumber">Mobilnummer:\u0020</string>
     <string name="alert_email">Email:\u0020</string>
+    <string name="pdialog_sending_message">Skickar...</string>
+    <string name="pdialog_pleasewait">Vänligen vänta...</string>
+    <string name="toast_messagesent">Formuläret skickat!</string>
+    <string name="sendemail_subject">NY MEDLEM!</string>
 
     <string name="tab_text_2">EVENTS</string>
     <string name="text_commaandclock">, kl </string>

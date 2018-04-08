@@ -172,7 +172,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
-            android:digits="abcdefghijklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ- 0123456789"
+            android:digits="abcdefghijklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ- 0123456789:"
             android:ems="10"
             android:fontFamily="@font/notosans_light"
             android:hint="@string/hint_streetaddress"

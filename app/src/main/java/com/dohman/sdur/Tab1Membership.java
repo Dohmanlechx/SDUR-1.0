@@ -34,6 +34,7 @@ public class Tab1Membership extends Fragment {
 
     private Member member;
 
+    private static final String MAILTOSDUR = "nymedlemsdur@gmail.com";
     private TextView tv;
     private Spinner genderSpinner;
     private EditText etForename;
@@ -97,8 +98,6 @@ public class Tab1Membership extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO token och callbackurl?
-//                startSwish(myContext, "f34DS34lfd0d03fdDselkfd3ffk21", "back_scheme", 0);
-
                 // Saving what the user had written.
                 setValues();
                 // Setting the values if everything was correctly written,
@@ -109,6 +108,7 @@ public class Tab1Membership extends Fragment {
                         // Creating the member.
                         member = new Member(foreName, surName, gender, identityNumber, streetAddress, postCode, city, phoneNumber, email);
                         doubleCheck();
+
                     }
                 }
             }
@@ -288,13 +288,27 @@ public class Tab1Membership extends Fragment {
         builder.setPositiveButton(getString(R.string.alert_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
-                    //TODO token och callbackurl?
-                    startSwish(myContext, "5", "back_scheme", 0);
-                }
+                sendEmail();
+//                if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
+//                    //TODO token och callbackurl?
+//                    startSwish(myContext, "5", "back_scheme", 0);
+//                }
             }
         });
         builder.show();
+    }
+
+    private void sendEmail() {
+        // Declaring all the member's information into single String.
+        StringBuilder memberinfo = new StringBuilder();
+
+        memberinfo.append(member.getForename()).append("\n\n").append(member.getSurname()).append("\n\n").append(member.getGender()).append("\n\n")
+                .append(member.getIdentitynumber()).append("\n\n").append(member.getStreetaddress()).append("\n\n").append(member.getPostcode())
+                .append("\n\n").append(member.getCity()).append("\n\n").append(member.getPhonenumber()).append("\n\n").append(member.getEmail());
+
+        // Sending the email with all the member's information.
+        SendMail sm = new SendMail(myContext, MAILTOSDUR, getString(R.string.sendemail_subject), memberinfo.toString());
+        sm.execute();
     }
 
     // Swish package name is "se.bankgirot.swish".
