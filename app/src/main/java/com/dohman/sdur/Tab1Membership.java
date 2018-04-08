@@ -55,6 +55,7 @@ public class Tab1Membership extends Fragment {
     private String phoneNumber;
     private String email;
     private Button mButton;
+    private boolean spam = false;
 
     // Creating an "myContext" from this method.
     @Override
@@ -97,18 +98,20 @@ public class Tab1Membership extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO token och callbackurl?
-                // Saving what the user had written.
-                setValues();
-                // Setting the values if everything was correctly written,
-                // especially the identity number.
-                // It checks first if all fields are filled before running those validations, to avoid crashes.
-                if (areAllFieldsFilled()) {
-                    if (identitynumberCheck() && validEmail(email) && validPhoneNumber() && validPostCode()) {
-                        // Creating the member.
-                        member = new Member(foreName, surName, gender, identityNumber, streetAddress, postCode, city, phoneNumber, email);
-                        doubleCheck();
-
+                if (spam) {
+                    Toast.makeText(myContext, getString(R.string.toast_alreadysent), Toast.LENGTH_LONG).show();
+                } else {
+                    // Saving what the user had written.
+                    setValues();
+                    // Setting the values if everything was correctly written,
+                    // especially the identity number.
+                    // It checks first if all fields are filled before running those validations, to avoid crashes.
+                    if (areAllFieldsFilled()) {
+                        if (identitynumberCheck() && validEmail(email) && validPhoneNumber() && validPostCode()) {
+                            // Creating the member.
+                            member = new Member(foreName, surName, gender, identityNumber, streetAddress, postCode, city, phoneNumber, email);
+                            doubleCheckAndPay();
+                        }
                     }
                 }
             }
@@ -132,7 +135,7 @@ public class Tab1Membership extends Fragment {
             etPostcode.setText(addSpace.toString());
         }
 
-        // Adding - to the identity number if missing.
+        // Adding - to the identity number if written without any.
         if (etIdentitynumber.getText().toString().length() == 12) {
             StringBuilder addMinus;
             addMinus = new StringBuilder(etIdentitynumber.getText().toString());
@@ -270,7 +273,7 @@ public class Tab1Membership extends Fragment {
         return false;
     }
 
-    private void doubleCheck() {
+    private void doubleCheckAndPay() {
         AlertDialog.Builder builder = new AlertDialog.Builder(myContext, AlertDialog.THEME_HOLO_DARK);
         builder.setCancelable(true);
         builder.setTitle(getString(R.string.alert_title));
@@ -288,7 +291,7 @@ public class Tab1Membership extends Fragment {
         builder.setPositiveButton(getString(R.string.alert_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                sendEmail();
+                    sendEmail();
 //                if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
 //                    //TODO token och callbackurl?
 //                    startSwish(myContext, "5", "back_scheme", 0);
@@ -299,7 +302,7 @@ public class Tab1Membership extends Fragment {
     }
 
     private void sendEmail() {
-        // Declaring all the member's information into single String.
+        // Declaring all the member's information into a single String.
         StringBuilder memberinfo = new StringBuilder();
 
         memberinfo.append(member.getForename()).append("\n\n").append(member.getSurname()).append("\n\n").append(member.getGender()).append("\n\n")
@@ -307,7 +310,8 @@ public class Tab1Membership extends Fragment {
                 .append("\n\n").append(member.getCity()).append("\n\n").append(member.getPhonenumber()).append("\n\n").append(member.getEmail());
 
         // Sending the email with all the member's information.
-        SendMail sm = new SendMail(myContext, MAILTOSDUR, getString(R.string.sendemail_subject), memberinfo.toString());
+        SendMail sm = new SendMail(myContext, MAILTOSDUR, getString(R.string.sendemail_subject)
+                + " " + member.getForename() + " " + member.getSurname(), memberinfo.toString());
         sm.execute();
     }
 
@@ -318,7 +322,7 @@ public class Tab1Membership extends Fragment {
             context.getPackageManager().getApplicationInfo(SwishPackageName, 0);
             isSwishInstalled = true;
         } catch (PackageManager.NameNotFoundException e) {
-
+            Log.e(TAG, "isSwishAppInstalled: Error!", e);
         }
 
         return isSwishInstalled;

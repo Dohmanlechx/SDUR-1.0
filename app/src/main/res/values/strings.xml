@@ -47,9 +47,10 @@
     <string name="alert_phonenumber">Mobilnummer:\u0020</string>
     <string name="alert_email">Email:\u0020</string>
     <string name="pdialog_sending_message">Skickar...</string>
-    <string name="pdialog_pleasewait">Vänligen vänta...</string>
+    <string name="pdialog_pleasewait">Vänligen vänta</string>
     <string name="toast_messagesent">Formuläret skickat!</string>
     <string name="sendemail_subject">NY MEDLEM!</string>
+    <string name="toast_alreadysent">Du har redan skickat in formuläret!\nKontakta oss vid problem.</string>
 
     <string name="tab_text_2">EVENTS</string>
     <string name="text_commaandclock">, kl </string>
