@@ -65,7 +65,6 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         textViewDBText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(myContext, getString(R.string.toast_facebook), Toast.LENGTH_SHORT).show();
                 Intent facebookIntent = openFacebook(myContext);
                 startActivity(facebookIntent);
             }
@@ -114,7 +113,7 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         Log.d(TAG, "openFacebook: Starts.");
         try {
             context.getPackageManager()
-                    .getPackageInfo("com.facebook.dohman", 0);
+                    .getPackageInfo("com.facebook.android", 0);
             return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/193360381417515/"));
         }
         catch (Exception e) {

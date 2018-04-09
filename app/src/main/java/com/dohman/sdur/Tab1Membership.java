@@ -99,6 +99,7 @@ public class Tab1Membership extends Fragment {
             @Override
             public void onClick(View v) {
                 if (spam) {
+                    // So the user can't send again until reboot of the app, like anti-spam filter.
                     Toast.makeText(myContext, getString(R.string.toast_alreadysent), Toast.LENGTH_LONG).show();
                 } else {
                     // Saving what the user had written.
@@ -291,7 +292,8 @@ public class Tab1Membership extends Fragment {
         builder.setPositiveButton(getString(R.string.alert_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                    sendEmail();
+                spam = true;
+                sendEmail();
 //                if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
 //                    //TODO token och callbackurl?
 //                    startSwish(myContext, "5", "back_scheme", 0);

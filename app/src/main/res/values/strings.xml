@@ -1,7 +1,16 @@
 <resources>
     <string name="app_name">SDUR</string>
+    <string name="app_fullname">Stockholms Dövas Ungdomsråd</string>
     <string name="background_image">Bakgrundsbild på SDURs logga</string>
     <string name="action_settings">SETTINGS</string>
+    <string name="mainmenu_about">Om...</string>
+    <string name="about_developer"><b>Utvecklare:</b> David Öhman, 2018</string>
+    <string name="about_homepage">Kolla gärna in på vår hemsida:</string>
+    <string name="about_homepageurl"><u>https://www.sdur.se</u></string>
+    <string name="about_contactus">Tveka inte att kontakta oss!</string>
+    <string name="toast_notfoundbrowser">Kunde inte hitta någon webbläsare-app</string>
+    <string name="toast_notfoundemail">Kunde inte hitta någon email-app</string>
+    <string name="choose_emailclient">Välj din klient...</string>
 
     <string name="tab_text_1">BLI MEDLEM</string>
     <string name="hinttext_name">ex. Pelle Pelikansson</string>
@@ -37,15 +46,15 @@
     <string name="alert_title">Kontrollera uppgifterna!</string>
     <string name="alert_cancel">TILLBAKA</string>
     <string name="alert_ok">ALLT ÄR KORREKT</string>
-    <string name="alert_forename">Förnamn:\u0020</string>
-    <string name="alert_surname">Efternamn:\u0020</string>
-    <string name="alert_gender">Kön:\u0020</string>
-    <string name="alert_identitynumber">Personnummer:\u0020</string>
-    <string name="alert_streetaddress">Gatuadress:\u0020</string>
-    <string name="alert_postcode">Postkod:\u0020</string>
-    <string name="alert_city">Bostadsort:\u0020</string>
-    <string name="alert_phonenumber">Mobilnummer:\u0020</string>
-    <string name="alert_email">Email:\u0020</string>
+    <string name="alert_forename"><b>Förnamn:</b>\u0020</string>
+    <string name="alert_surname"><b>Efternamn:</b>\u0020</string>
+    <string name="alert_gender"><b>Kön:</b>\u0020</string>
+    <string name="alert_identitynumber"><b>Personnummer:</b>\u0020</string>
+    <string name="alert_streetaddress"><b>Gatuadress:</b>\u0020</string>
+    <string name="alert_postcode"><b>Postkod:</b>\u0020</string>
+    <string name="alert_city"><b>Bostadsort:</b>\u0020</string>
+    <string name="alert_phonenumber"><b>Mobilnummer:</b>\u0020</string>
+    <string name="alert_email"><b>Email:</b>\u0020</string>
     <string name="pdialog_sending_message">Skickar...</string>
     <string name="pdialog_pleasewait">Vänligen vänta</string>
     <string name="toast_messagesent">Formuläret skickat!</string>

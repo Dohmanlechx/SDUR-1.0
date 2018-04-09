@@ -121,7 +121,7 @@ public class Tab2Events extends Fragment {
         Log.d(TAG, "openFacebook: Starts.");
         try {
             context.getPackageManager()
-                    .getPackageInfo("com.facebook.dohman", 0);
+                    .getPackageInfo("com.facebook.android", 0);
             return new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         } catch (Exception e) {
             return new Intent(Intent.ACTION_VIEW,
