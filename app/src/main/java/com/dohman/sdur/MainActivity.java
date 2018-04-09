@@ -1,6 +1,7 @@
 package com.dohman.sdur;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
+    private Context myContext;
+
     // SectionPageAdapter is that puts fragments together into an tab-menu.
     private SectionsPageAdapter mAdapter;
     // ViewPager is often used in combination with Fragments. Putting it together.
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        myContext = this;
 
         // Setting the toolbar.
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -123,7 +128,11 @@ public class MainActivity extends AppCompatActivity {
         buttonFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callFacebook();
+                //TODO Får bara NameNotFoundExpection HELA TIDEN!
+                //TODO Trots att koderna funkar perfekt i Tab3Youtube-klassen
+                //TODO Det är något meed myContext som krånglar
+                Intent facebookIntent = openFacebook(myContext);
+                startActivity(facebookIntent);
             }
         });
         // THE INSTAGRAM BUTTON.
@@ -149,13 +158,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //TODO denna öppnar inte appen
-    private void callFacebook() {
-        Log.d(TAG, "callFacebook: Starts.");
-        String url = "https://www.facebook.com/n/?SDUR1937";
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        // It opens automatically in the Facebook app if available, otherwise browser.
-        startActivity(browserIntent);
+    // Method taking the user to the Facebook App,
+    // or to the Facebook in browser if fails.
+    public static Intent openFacebook(Context context) {
+        Log.d(TAG, "openFacebook: Starts.");
+        try {
+            context.getPackageManager()
+                    .getPackageInfo("com.facebook.android", 0);
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/268040889920139/"));
+        }
+        catch (Exception e) {
+            Log.e(TAG, "openFacebook: FAIL", e);
+            return new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://www.facebook.com/268040889920139/"));
+        }
     }
 
     private void callInstagram() {

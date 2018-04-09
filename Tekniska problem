@@ -36,3 +36,10 @@ MEDLEM:
 Här var det väldigt många buggar som jag fått koda bort. En massa! Eftersom jag måste ha
 med i en massa validationer. Fast det har varit ganska enkelt, bara krävts mycket jobb.
 
+----------------------------------------------------------------------------------
+
+"OM..." RUTAN:
+
+Har enorma problem med Facebook-intenten, trots att det funkar perfekt i Fragment-klassen
+vägrar koderna funka i MainActivity, det är något med myContext som krånglar, men jag fattar
+inte varför.
