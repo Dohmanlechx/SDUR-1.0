@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private Context myContext;
+
+    public static String FACEBOOK_URL = "https://www.facebook.com/SDUR1937/";
+    public static String FACEBOOK_PAGE_ID = "268040889920139";
 
     // SectionPageAdapter is that puts fragments together into an tab-menu.
     private SectionsPageAdapter mAdapter;
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showAboutDialog() {
+    private void showAboutDialog() {
         Log.d(TAG, "showAboutDialog: Starts.");
         View messageView = getLayoutInflater().inflate(R.layout.about, null, false);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -130,9 +134,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //TODO Får bara NameNotFoundExpection HELA TIDEN!
                 //TODO Trots att koderna funkar perfekt i Tab3Youtube-klassen
-                //TODO Det är något meed myContext som krånglar
-                Intent facebookIntent = openFacebook(myContext);
+                //TODO Det är något med myContext som krånglar
+                Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
+                String facebookUrl = getFacebookPageURL(myContext);
+                facebookIntent.setData(Uri.parse(facebookUrl));
                 startActivity(facebookIntent);
+//                Intent facebookIntent = openFacebook(myContext);
+//                startActivity(facebookIntent);
             }
         });
         // THE INSTAGRAM BUTTON.
@@ -151,26 +159,30 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "callEmail: Starts.");
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "florian@sdur.se", null));
         try {
+            Log.d(TAG, "callEmail: Found APP.");
             // Letting the user to choose email app.
             startActivity(Intent.createChooser(emailIntent, getString(R.string.choose_emailclient)));
         } catch (ActivityNotFoundException e) {
+            Log.e(TAG, "callEmail: Did not find APP.", e);
             Toast.makeText(MainActivity.this, getString(R.string.toast_notfoundemail), Toast.LENGTH_LONG).show();
         }
     }
 
-    // Method taking the user to the Facebook App,
-    // or to the Facebook in browser if fails.
-    public static Intent openFacebook(Context context) {
-        Log.d(TAG, "openFacebook: Starts.");
+    // Method to get the right URL to use in the intent.
+    public String getFacebookPageURL(Context context) {
+        PackageManager packageManager = context.getPackageManager();
         try {
-            context.getPackageManager()
-                    .getPackageInfo("com.facebook.android", 0);
-            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/268040889920139/"));
-        }
-        catch (Exception e) {
-            Log.e(TAG, "openFacebook: FAIL", e);
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.facebook.com/268040889920139/"));
+            int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
+            if (versionCode >= 3002850) { // Newer versions of Facebook app.
+                Log.d(TAG, "getFacebookPageURL: Found APP.");
+                return "fb://facewebmodal/f?href=" + FACEBOOK_URL;
+            } else { // Older versions of Facebook app.
+                Log.d(TAG, "getFacebookPageURL: Found APP.");
+                return "fb://page/" + FACEBOOK_PAGE_ID;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "getFacebookPageURL: Did not find APP.", e);
+            return FACEBOOK_URL; // Normal web url.
         }
     }
 
@@ -180,8 +192,10 @@ public class MainActivity extends AppCompatActivity {
         Intent instagramIntent = new Intent(Intent.ACTION_VIEW, uri);
         instagramIntent.setPackage("com.instagram.android");
         try {
+            Log.d(TAG, "callInstagram: Found APP.");
             startActivity(instagramIntent);
         } catch (ActivityNotFoundException e) {
+            Log.e(TAG, "callInstagram: Did not find APP.", e);
             // Opening the browser if Instagram app is not installed.
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/sdur08")));
         }

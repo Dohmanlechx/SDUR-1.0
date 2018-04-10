@@ -294,10 +294,10 @@ public class Tab1Membership extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 spam = true;
                 sendEmail();
-//                if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
-//                    //TODO token och callbackurl?
-//                    startSwish(myContext, "5", "back_scheme", 0);
-//                }
+                if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
+                    //TODO token och callbackurl?
+                    startSwish(myContext, "???", "sdur://connect", "res", 0);
+                }
             }
         });
         builder.show();
@@ -330,11 +330,13 @@ public class Tab1Membership extends Fragment {
         return isSwishInstalled;
     }
 
-    public static boolean startSwish(Activity activity, String token, String callBackUrl, int requestCode) {
-        if (token == null || token.length() == 0 || callBackUrl == null || callBackUrl.length() == 0 || activity == null) {
+    public static boolean startSwish(Activity activity, String URL_encoded_JSON_payload,
+                                     String callbackUrl, String callbackResultParameter, int requestCode) {
+        if (callbackUrl == null || callbackUrl.length() == 0 || activity == null) {
             return false;
         }
-        Uri scheme = Uri.parse("swish://paymentrequest?token=" + token + "&callbackurl=" + callBackUrl);
+        Uri scheme = Uri.parse("swish://payment?data=" + URL_encoded_JSON_payload +
+                "&callbackurl=" + callbackUrl + "&callbackresultparameter=" + callbackResultParameter);
         Intent intent = new Intent(Intent.ACTION_VIEW, scheme);
         intent.setPackage("se.bankgirot.swish");
         boolean started = true;

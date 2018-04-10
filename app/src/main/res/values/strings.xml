@@ -7,7 +7,7 @@
     <string name="about_developer"><b>Utvecklare:</b> David Öhman, 2018</string>
     <string name="about_homepage">Kolla gärna in på vår hemsida:</string>
     <string name="about_homepageurl"><u>https://www.sdur.se</u></string>
-    <string name="about_contactus">Tveka inte att kontakta oss!</string>
+    <string name="about_contactus">Tveka inte med att kontakta oss!</string>
     <string name="toast_notfoundbrowser">Kunde inte hitta någon webbläsare-app</string>
     <string name="toast_notfoundemail">Kunde inte hitta någon email-app</string>
     <string name="choose_emailclient">Välj din klient...</string>

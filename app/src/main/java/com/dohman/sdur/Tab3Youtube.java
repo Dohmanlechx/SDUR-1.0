@@ -3,6 +3,7 @@ package com.dohman.sdur;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,6 +29,9 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
     private static final String TAG = "Tab3Youtube";
 
     private FragmentActivity myContext;
+
+    public static String FACEBOOK_URL = "https://www.facebook.com/groups/193360381417515/";
+    public static String FACEBOOK_PAGE_ID = "193360381417515";
 
     // My API-key for Google.
     private static final String API_KEY = "AIzaSyA7tz7XjWHy_cYyRk69xFfE2demIjX7gYE";
@@ -65,7 +69,11 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         textViewDBText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent facebookIntent = openFacebook(myContext);
+//                Intent facebookIntent = openFacebook(myContext);
+//                startActivity(facebookIntent);
+                Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
+                String facebookUrl = getFacebookPageURL(myContext);
+                facebookIntent.setData(Uri.parse(facebookUrl));
                 startActivity(facebookIntent);
             }
         });
@@ -113,12 +121,30 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         Log.d(TAG, "openFacebook: Starts.");
         try {
             context.getPackageManager()
-                    .getPackageInfo("com.facebook.android", 0);
-            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/193360381417515/"));
-        }
-        catch (Exception e) {
+                    .getPackageInfo("com.facebook.katana", 0);
+            //  return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/193360381417515/"));
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/f?href=https://www.facebook.com/groups/193360381417515/"));
+        } catch (PackageManager.NameNotFoundException e) {
             return new Intent(Intent.ACTION_VIEW,
                     Uri.parse("https://www.facebook.com/groups/193360381417515/"));
+        }
+    }
+
+    // Method to get the right URL to use in the intent.
+    private String getFacebookPageURL(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
+            if (versionCode >= 3002850) { // Newer versions of Facebook app.
+                Log.d(TAG, "getFacebookPageURL: Found APP.");
+                return "fb://facewebmodal/f?href=" + FACEBOOK_URL;
+            } else { // Older versions of Facebook app
+                Log.d(TAG, "getFacebookPageURL: Found APP.");
+                return "fb://page/" + FACEBOOK_PAGE_ID;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "getFacebookPageURL: Did not find APP.", e);
+            return FACEBOOK_URL; // Normal web url.
         }
     }
 }

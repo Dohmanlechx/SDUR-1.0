@@ -117,7 +117,7 @@ public class Tab2Events extends Fragment {
 
     // Method taking the user to the Facebook App,
     // or to the Facebook in browser if fails.
-    public static Intent openFacebook(Context context, String url) {
+    private static Intent openFacebook(Context context, String url) {
         Log.d(TAG, "openFacebook: Starts.");
         try {
             context.getPackageManager()

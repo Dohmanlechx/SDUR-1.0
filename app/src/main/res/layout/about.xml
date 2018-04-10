@@ -108,7 +108,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_facebook"
         app:layout_constraintTop_toBottomOf="@+id/about_contactus"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/email_icon" />
 
     <ImageButton
         android:id="@+id/button_facebook"
@@ -124,7 +124,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/about_contactus"
-        app:srcCompat="@drawable/facebook_001" />
+        app:srcCompat="@drawable/facebook_icon" />
 
     <ImageButton
         android:id="@+id/button_instagram"
@@ -137,6 +137,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_facebook"
         app:layout_constraintTop_toBottomOf="@+id/about_contactus"
-        app:srcCompat="@drawable/instagram_001" />
+        app:srcCompat="@drawable/instagram_icon" />
 
 </android.support.constraint.ConstraintLayout>
