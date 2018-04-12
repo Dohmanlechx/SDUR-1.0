@@ -30,6 +30,7 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
 
     private FragmentActivity myContext;
 
+    // Facebook url.
     public static String FACEBOOK_URL = "https://www.facebook.com/groups/193360381417515/";
     public static String FACEBOOK_PAGE_ID = "193360381417515";
 
@@ -112,21 +113,6 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         } else {
             String errorMessage = String.format("Misslyckades att spela upp videon. (%1$s)", errorResults.toString());
             Toast.makeText(myContext, errorMessage, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    // Method taking the user to the Facebook App,
-    // or to the Facebook in browser if fails.
-    private static Intent openFacebook(Context context) {
-        Log.d(TAG, "openFacebook: Starts.");
-        try {
-            context.getPackageManager()
-                    .getPackageInfo("com.facebook.katana", 0);
-            //  return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/193360381417515/"));
-            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/f?href=https://www.facebook.com/groups/193360381417515/"));
-        } catch (PackageManager.NameNotFoundException e) {
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.facebook.com/groups/193360381417515/"));
         }
     }
 

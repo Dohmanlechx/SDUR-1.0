@@ -278,9 +278,9 @@ public class Tab1Membership extends Fragment {
     }
 
     private void doubleCheckAndPay() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(myContext, AlertDialog.THEME_HOLO_LIGHT);
+        AlertDialog.Builder builder = new AlertDialog.Builder(myContext, AlertDialog.THEME_HOLO_DARK);
 
-        builder.setCancelable(true);
+        builder.setCancelable(false);
         builder.setTitle(getString(R.string.alert_title));
         builder.setMessage(getString(R.string.alert_forename) + member.getForename() + "\n" + getString(R.string.alert_surname) + member.getSurname() + "\n"
                 + getString(R.string.alert_gender) + member.getGender() + "\n" + getString(R.string.alert_identitynumber) + member.getIdentitynumber() + "\n"

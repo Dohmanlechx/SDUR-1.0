@@ -3,6 +3,7 @@ package com.dohman.sdur;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -24,8 +25,13 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mSharedPreferencesEditor;
+    private ImageView image;
+
     private Context myContext;
 
+    // Facebook url.
     public static String FACEBOOK_URL = "https://www.facebook.com/SDUR1937/";
     public static String FACEBOOK_PAGE_ID = "268040889920139";
 
@@ -38,6 +44,20 @@ public class MainActivity extends AppCompatActivity {
     // Module scope because we need to dismiss it in onStop to avoid memory leaks.
     private AlertDialog mDialog = null;
 
+    private VisibilityChoice myEnum;
+
+    private enum VisibilityChoice {
+        ON, OFF;
+
+        public static VisibilityChoice toMyEnum(String myEnumString) {
+            try {
+                return valueOf(myEnumString);
+            } catch (Exception e) {
+                return OFF;
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: Starts.");
@@ -46,6 +66,28 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         myContext = this;
+
+        // Enum for the choice of wanting the background image visible or not.
+        // This is for our users with defect of vision.
+        image = findViewById(R.id.imageView_background);
+        mSharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+        mSharedPreferencesEditor = mSharedPreferences.edit();
+        switch (getMyEnum()) {
+            case ON: {
+                myEnum = VisibilityChoice.ON;
+                break;
+            }
+            case OFF: {
+                myEnum = VisibilityChoice.OFF;
+                break;
+            }
+        }
+
+        if (myEnum == VisibilityChoice.OFF) {
+            image.setVisibility(View.VISIBLE);
+        } else {
+            image.setVisibility(View.INVISIBLE);
+        }
 
         // Setting the toolbar.
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -68,6 +110,16 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: Ends.");
     }
 
+    public void setMyEnum(VisibilityChoice myEnum) {
+        mSharedPreferencesEditor.putString("MyEnum", myEnum.toString());
+        mSharedPreferencesEditor.commit();
+    }
+
+    public VisibilityChoice getMyEnum() {
+        String myEnumString = mSharedPreferences.getString("MyEnum", VisibilityChoice.OFF.toString());
+        return VisibilityChoice.toMyEnum(myEnumString);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflating the menu; this adds items to the action bar.
@@ -85,11 +137,14 @@ public class MainActivity extends AppCompatActivity {
                 showAboutDialog();
                 break;
             case R.id.mainmenu_removeimage:
-                ImageView image = findViewById(R.id.imageView_background);
                 if (image.getVisibility() == View.INVISIBLE) {
+                    myEnum = VisibilityChoice.OFF;
                     image.setVisibility(View.VISIBLE);
+                    setMyEnum(VisibilityChoice.OFF);
                 } else {
+                    myEnum = VisibilityChoice.ON;
                     image.setVisibility(View.INVISIBLE);
+                    setMyEnum(VisibilityChoice.ON);
                 }
                 break;
         }
