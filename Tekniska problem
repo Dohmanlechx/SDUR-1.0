@@ -42,4 +42,6 @@ med i en massa validationer. Fast det har varit ganska enkelt, bara krävts myck
 
 Har enorma problem med Facebook-intenten, trots att det funkar perfekt i Fragment-klassen
 vägrar koderna funka i MainActivity, det är något med myContext som krånglar, men jag fattar
-inte varför.
+inte varför. Lösning: Jag hade hela tiden gjort fel (obviously) men det var för att jag inte 
+skrev com.facebook.katana som packagenamn då jag trodde katana var påhittat/frivilligt så 
+programmet kunde aldrig hitta Facebook-appen i luren.
