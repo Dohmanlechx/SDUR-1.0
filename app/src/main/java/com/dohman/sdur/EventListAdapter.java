@@ -18,6 +18,7 @@ public class EventListAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<Event> mEventList;
+    private View mView;
 
     public EventListAdapter(Context context, List<Event> eventList) {
         mContext = context;
@@ -42,15 +43,15 @@ public class EventListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Inflating the layout into a view.
-        View view = View.inflate(mContext, R.layout.event_list, null);
+        mView = View.inflate(mContext, R.layout.event_list, null);
 
         // Finding the textviews.
-        TextView tvEventDate = view.findViewById(R.id.tv_eventdate);
-        TextView tvEventName = view.findViewById(R.id.tv_eventname);
-        TextView tvEventPlace = view.findViewById(R.id.tv_eventplace);
-        TextView tvEventClock = view.findViewById(R.id.tv_eventclock);
-        TextView tvEventText = view.findViewById(R.id.tv_eventtext);
-        TextView tvEventLink = view.findViewById(R.id.tv_eventlink);
+        TextView tvEventDate = mView.findViewById(R.id.tv_eventdate);
+        TextView tvEventName = mView.findViewById(R.id.tv_eventname);
+        TextView tvEventPlace = mView.findViewById(R.id.tv_eventplace);
+        TextView tvEventClock = mView.findViewById(R.id.tv_eventclock);
+        TextView tvEventText = mView.findViewById(R.id.tv_eventtext);
+        TextView tvEventLink = mView.findViewById(R.id.tv_eventlink);
 
         // Setting text for those textviews.
         tvEventDate.setText(mEventList.get(position).getDatum());
@@ -62,14 +63,14 @@ public class EventListAdapter extends BaseAdapter {
 
         // Alternate backgroundcolor for the "cards".
         if (position % 2 == 0) {
-            view.setBackgroundColor(view.getResources().getColor(R.color.colorPrimaryDarkTransparent));
+            mView.setBackgroundColor(mView.getResources().getColor(R.color.test2));
         } else {
-            view.setBackgroundColor(view.getResources().getColor(R.color.colorPrimaryTransparent));
+            mView.setBackgroundColor(mView.getResources().getColor(R.color.test1));
         }
 
         // Saving event id to tag.
-        view.setTag(mEventList.get(position).getId());
+        mView.setTag(mEventList.get(position).getId());
 
-        return view;
+        return mView;
     }
 }

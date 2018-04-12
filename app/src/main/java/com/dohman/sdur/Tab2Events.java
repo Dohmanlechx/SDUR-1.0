@@ -87,7 +87,7 @@ public class Tab2Events extends Fragment {
                 Log.d(TAG, "onCreateView: Initializing the adapter...");
                 mEventListAdapter = new EventListAdapter(getContext(), mEventList);
                 mEventListView.setAdapter(mEventListAdapter);
-                mEventListView.setDividerHeight(10);
+                mEventListView.setDividerHeight(5);
 //                mEventListView.setBackground(shape);
             }
 

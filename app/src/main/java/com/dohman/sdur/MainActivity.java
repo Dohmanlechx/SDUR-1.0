@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mainmenu_about:
                 showAboutDialog();
                 break;
+            case R.id.mainmenu_removeimage:
+                ImageView image = findViewById(R.id.imageView_background);
+                if (image.getVisibility() == View.INVISIBLE) {
+                    image.setVisibility(View.VISIBLE);
+                } else {
+                    image.setVisibility(View.INVISIBLE);
+                }
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -132,15 +141,10 @@ public class MainActivity extends AppCompatActivity {
         buttonFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Får bara NameNotFoundExpection HELA TIDEN!
-                //TODO Trots att koderna funkar perfekt i Tab3Youtube-klassen
-                //TODO Det är något med myContext som krånglar
                 Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
                 String facebookUrl = getFacebookPageURL(myContext);
                 facebookIntent.setData(Uri.parse(facebookUrl));
                 startActivity(facebookIntent);
-//                Intent facebookIntent = openFacebook(myContext);
-//                startActivity(facebookIntent);
             }
         });
         // THE INSTAGRAM BUTTON.

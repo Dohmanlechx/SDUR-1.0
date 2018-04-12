@@ -92,6 +92,9 @@ public class Tab1Membership extends Fragment {
         etPhonenumber = tab1view.findViewById(R.id.et_phonenumber);
         etEmail = tab1view.findViewById(R.id.et_email);
 
+//        // Coloring the edittexts' underline.
+//        etForename.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+
         // Finding the button and setting listener.
         mButton = tab1view.findViewById(R.id.button_send);
         mButton.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimaryDarkTransparent), PorterDuff.Mode.MULTIPLY);
@@ -275,7 +278,8 @@ public class Tab1Membership extends Fragment {
     }
 
     private void doubleCheckAndPay() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(myContext, AlertDialog.THEME_HOLO_DARK);
+        AlertDialog.Builder builder = new AlertDialog.Builder(myContext, AlertDialog.THEME_HOLO_LIGHT);
+
         builder.setCancelable(true);
         builder.setTitle(getString(R.string.alert_title));
         builder.setMessage(getString(R.string.alert_forename) + member.getForename() + "\n" + getString(R.string.alert_surname) + member.getSurname() + "\n"

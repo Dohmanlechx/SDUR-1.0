@@ -4,7 +4,16 @@
     tools:context="com.dohman.sdur.MainActivity">
     <item
         android:id="@+id/mainmenu_about"
+        android:checkable="false"
+        android:checked="false"
+        android:icon="@android:drawable/ic_dialog_info"
         android:orderInCategory="100"
         android:title="@string/mainmenu_about"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mainmenu_removeimage"
+        android:icon="@drawable/visibility_off"
+        android:orderInCategory="99"
+        android:title="@string/mainmenu_removeimage"
+        app:showAsAction="ifRoom" />
 </menu>

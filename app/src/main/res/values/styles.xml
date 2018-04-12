@@ -29,7 +29,7 @@
         <item name="tabSelectedTextColor">@color/white</item>
     </style>
 
-    <style name="MyEditTextUnderlineColor" parent="Widget.AppCompat.EditText">
+    <style name="MyEditTextIndicatorColor" parent="Widget.AppCompat.EditText">
         <item name="colorControlActivated">@color/gray</item>
         <item name="colorControlNormal">@color/gray</item>
     </style>

@@ -59,6 +59,7 @@
             android:background="@color/transparent"
             android:fontFamily="@font/notosans_regular"
             android:gravity="start"
+            android:paddingBottom="8dp"
             android:text="@string/text_du_bestammer"
             android:textAlignment="textStart"
             android:textColor="@color/white"

@@ -12,9 +12,13 @@
         android:id="@+id/imageView_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:adjustViewBounds="false"
+        android:baselineAlignBottom="false"
         android:contentDescription="@string/background_image"
+        android:cropToPadding="false"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/background_image" />
+        app:srcCompat="@drawable/background_image"
+        tools:baselineAlignBottom="false" />
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
