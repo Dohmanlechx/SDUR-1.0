@@ -2,6 +2,7 @@ package com.dohman.sdur;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -67,10 +68,13 @@ public class MainActivity extends AppCompatActivity {
 
         myContext = this;
 
+        // SharedPreferences for saving the enum and for the first timer-use screen.
+        mSharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+
+        runTutorial();
+
         // Enum for the choice of wanting the background image visible or not.
         // This is for our users with defect of vision.
-        image = findViewById(R.id.imageView_background);
-        mSharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
         mSharedPreferencesEditor = mSharedPreferences.edit();
         switch (getMyEnum()) {
             case ON: {
@@ -82,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+
+        image = findViewById(R.id.imageView_background);
 
         if (myEnum == VisibilityChoice.OFF) {
             image.setVisibility(View.VISIBLE);
@@ -108,6 +114,39 @@ public class MainActivity extends AppCompatActivity {
         selectPage(1);
 
         Log.d(TAG, "onCreate: Ends.");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String tutorialKey = "FIRST_TIMER";
+        Boolean firstTimer = getPreferences(MODE_PRIVATE).getBoolean(tutorialKey, true);
+        if (firstTimer) {
+            runTutorial();
+            getPreferences(MODE_PRIVATE).edit().putBoolean(tutorialKey, false).apply();
+        }
+    }
+
+    //TODO Fixa snyggt
+    public void runTutorial() {
+        Log.d(TAG, "runTutorial: First-timer confirmed. Starts.");
+        View messageView = getLayoutInflater().inflate(R.layout.tutorial, null, false);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_NoActionBar);
+        builder.setTitle(getString(R.string.tutorial_welcome));
+        View titleView = getLayoutInflater().inflate(R.layout.tutorial_title, null, false);
+        builder.setCustomTitle(titleView);
+        builder.setIcon(R.drawable.backgroundimage_icon);
+        builder.setView(messageView);
+        builder.setPositiveButton(getString(R.string.tutorial_thanks), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mDialog.cancel();
+            }
+        });
+
+        mDialog = builder.create();
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
     }
 
     public void setMyEnum(VisibilityChoice myEnum) {

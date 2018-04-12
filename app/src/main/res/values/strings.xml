@@ -12,6 +12,8 @@
     <string name="toast_notfoundbrowser">Kunde inte hitta någon webbläsare-app</string>
     <string name="toast_notfoundemail">Kunde inte hitta någon email-app</string>
     <string name="choose_emailclient">Välj din klient...</string>
+    <string name="tutorial_welcome">Välkommen!</string>
+    <string name="tutorial_thanks">Tackar!</string>
 
     <string name="tab_text_1">BLI MEDLEM</string>
     <string name="hinttext_name">ex. Pelle Pelikansson</string>
