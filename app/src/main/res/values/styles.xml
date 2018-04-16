@@ -26,7 +26,8 @@
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/colorAccent</item>
         <item name="tabIndicatorHeight">2dp</item>
-        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabSelectedTextColor">@color/colorAccent</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="MyEditTextIndicatorColor" parent="Widget.AppCompat.EditText">

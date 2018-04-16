@@ -19,7 +19,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_regular"
         android:text="@string/tutorial_message"
-        android:textColor="@color/black"
+        android:textColor="@color/colorText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             getPreferences(MODE_PRIVATE).edit().putBoolean(tutorialKey, false).apply();
         }
     }
-    
+
     public void runTutorial() {
         Log.d(TAG, "runTutorial: First-timer confirmed. Starts.");
         View messageView = getLayoutInflater().inflate(R.layout.tutorial, null, false);

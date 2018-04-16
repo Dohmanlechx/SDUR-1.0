@@ -6,11 +6,11 @@
     <string name="mainmenu_about">Om...</string>
     <string name="mainmenu_removeimage">Bakgrundsbild</string>
     <string name="about_developer"><b>Utvecklare:</b> David Öhman, 2018</string>
-    <string name="about_homepage">Kolla gärna in på vår hemsida:</string>
+    <string name="about_homepage">Hemsida:</string>
     <string name="about_homepageurl"><u>https://www.sdur.se</u></string>
     <string name="about_contactus">Tveka inte att kontakta oss!</string>
-    <string name="toast_notfoundbrowser">Kunde inte hitta någon webbläsare-app</string>
-    <string name="toast_notfoundemail">Kunde inte hitta någon email-app</string>
+    <string name="toast_notfoundbrowser">Hittade ingen webbläsare</string>
+    <string name="toast_notfoundemail">Hittade ingen email-app</string>
     <string name="choose_emailclient">Välj din klient...</string>
     <string name="tutorial_welcome">Välkommen!</string>
     <string name="tutorial_message">Kul att du har valt att använda våran app! Innan du sätter igång vill vi berätta lite om hur appen funkar.
@@ -47,11 +47,11 @@
     <string name="text_email">Email</string>
     <string name="hint_email">ex. pellepelikan@sdur.se</string>
     <string name="button_sendinformation">SKICKA UPPGIFTERNA</string>
-    <string name="toast_incorrect_identitynumber">Personnumret är inkorrekt</string>
-    <string name="toast_notAllFieldsAreFilled">Du har inte fyllt i allt</string>
-    <string name="toast_incorrect_email">Emailadressen är inkorrekt</string>
-    <string name="toast_incorrect_phone">Mobilnumret är inkorrekt</string>
-    <string name="toast_incorrect_postcode">Postkoden är inkorrekt</string>
+    <string name="toast_incorrect_identitynumber">Personnumret inkorrekt</string>
+    <string name="toast_notAllFieldsAreFilled">Fyll i allt</string>
+    <string name="toast_incorrect_email">Emailadressen inkorrekt</string>
+    <string name="toast_incorrect_phone">Mobilnumret inkorrekt</string>
+    <string name="toast_incorrect_postcode">Postkoden inkorrekt</string>
     <string name="alert_title">Kontrollera uppgifterna!</string>
     <string name="alert_cancel">TILLBAKA</string>
     <string name="alert_ok">ALLT ÄR KORREKT</string>
@@ -66,18 +66,17 @@
     <string name="alert_email"><b>Email:</b>\u0020</string>
     <string name="pdialog_sending_message">Skickar...</string>
     <string name="pdialog_pleasewait">Vänligen vänta</string>
-    <string name="toast_messagesent">Formuläret skickat!</string>
+    <string name="toast_messagesent">Formuläret skickat</string>
     <string name="sendemail_subject">NY MEDLEM!</string>
     <string name="toast_alreadysent">Du har redan skickat in formuläret!\nKontakta oss vid problem.</string>
 
     <string name="tab_text_2">EVENTS</string>
-    <string name="toast_nolink">Ingen länk finnes för eventen</string>
+    <string name="toast_nolink">Ingen länk finnes</string>
 
     <string name="tab_text_3">TEMA</string>
     <string name="header_du_bestammer">DU BESTÄMMER!</string>
     <string name="text_du_bestammer">Det är DU som medlem som bestämmer över SDUR, något som många glömt.
-        Därför är vårt tema under 2018 ”DU BESTÄMMER”, det innebär att du som medlem kan komma med idéer
-        eller önskemål på aktiviteter så ser vi till att uppfylla dina önskemål! Klicka på denna ruta för att
-        komma till Facebookssidan!</string>
+                                    Därför är vårt tema under 2018 <i><b>”DU BESTÄMMER”</b></i>, att du som medlem kan komma med idéer
+                                    eller önskemål på aktiviteter så ser vi till att uppfylla dina önskemål!</string>
     <string name="toast_facebook">Tar dig till Facebook...</string>
 </resources>
