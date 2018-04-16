@@ -71,8 +71,6 @@ public class MainActivity extends AppCompatActivity {
         // SharedPreferences for saving the enum and for the first timer-use screen.
         mSharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
-        runTutorial();
-
         // Enum for the choice of wanting the background image visible or not.
         // This is for our users with defect of vision.
         mSharedPreferencesEditor = mSharedPreferences.edit();
@@ -126,8 +124,7 @@ public class MainActivity extends AppCompatActivity {
             getPreferences(MODE_PRIVATE).edit().putBoolean(tutorialKey, false).apply();
         }
     }
-
-    //TODO Fixa snyggt
+    
     public void runTutorial() {
         Log.d(TAG, "runTutorial: First-timer confirmed. Starts.");
         View messageView = getLayoutInflater().inflate(R.layout.tutorial, null, false);

@@ -13,6 +13,12 @@
     <string name="toast_notfoundemail">Kunde inte hitta någon email-app</string>
     <string name="choose_emailclient">Välj din klient...</string>
     <string name="tutorial_welcome">Välkommen!</string>
+    <string name="tutorial_message">Kul att du har valt att använda våran app! Innan du sätter igång vill vi berätta lite om hur appen funkar.
+                                    Fliken Events styrs av en databas i realtid, d.v.s. uppdateras listan automatiskt. När du klickar på en event kommer du
+                                    till dess Facebookssida där du kan anmäla dig till eventen.\n\nOm du tycker bakgrundsbilden är störande kan du klicka
+                                    på knappen som föreställer ett öga för att enkelt stänga av den.
+                                    Klickar du på knappen bredvid kommer du till våra kontaktuppgifter och sociala medier.\n\nSkulle du ha något önskemål
+                                    angående appen, tveka inte med att kontakta oss! Lycka till!</string>
     <string name="tutorial_thanks">Tackar!</string>
 
     <string name="tab_text_1">BLI MEDLEM</string>
