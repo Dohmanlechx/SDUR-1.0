@@ -23,6 +23,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.joda.time.LocalDate;
+import org.joda.time.Years;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -59,6 +61,9 @@ public class Tab1Membership extends Fragment {
     private String email;
     private Button mButton;
     private boolean spam = false;
+    private int myAge, ageYear, ageMonth, ageDay;
+    private LocalDate birth;
+    private LocalDate today = new LocalDate();
 
     // Creating an "myContext" from this method.
     @Override
@@ -72,6 +77,7 @@ public class Tab1Membership extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: Starts.");
         // Connects to the right layout file.
         View tab1view = inflater.inflate(R.layout.tab1_membership, container, false);
 
@@ -109,7 +115,6 @@ public class Tab1Membership extends Fragment {
                     Toast.makeText(myContext, getString(R.string.toast_alreadysent), Toast.LENGTH_LONG).show();
                 } else {
                     // Saving what the user had written.
-                    justTest();
                     setValues();
                     // Setting the values if everything was correctly written,
                     // especially the identity number.
@@ -126,38 +131,6 @@ public class Tab1Membership extends Fragment {
         });
 
         return tab1view;
-    }
-
-    public void justTest() {
-        if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
-            try {
-                JSONObject json = new JSONObject();
-
-                JSONObject payee = new JSONObject();
-                payee.put("value", "1230974758");
-
-                JSONObject amount = new JSONObject();
-                amount.put("value", 400);
-
-                JSONObject message = new JSONObject();
-                message.put("value", getString(R.string.swish_message));
-                message.put("editable", false);
-
-                json.put("version", 1);
-                json.put("payee", payee);
-                json.put("amount", amount);
-                json.put("message", message);
-
-                startSwish(myContext, json.toString(), "sdur://connect", "res", 0);
-//                        JSONObject payee = new JSONObject();
-//                        payee.put("value", "1230974758");
-//
-//                        JSONObject amount = new JSONObject();
-//                        amount.put("value", 200);
-            } catch (JSONException e) {
-                Log.e(TAG, "onClick: JSON Error", e);
-            }
-        }
     }
 
     private void setValues() {
@@ -206,6 +179,7 @@ public class Tab1Membership extends Fragment {
 
     private boolean identitynumberCheck() {
         Log.d(TAG, "identitynumberCheck: Starts.");
+
         int month, day, lastDigit;
 
         // Creating a temporary string where the - and the two first digits are removed.
@@ -314,6 +288,11 @@ public class Tab1Membership extends Fragment {
     }
 
     private void doubleCheckAndPay() {
+        Log.d(TAG, "doubleCheckAndPay: Starts.");
+
+        // Counting age of the member, see method.
+        countAge();
+
         AlertDialog.Builder builder = new AlertDialog.Builder(myContext, AlertDialog.THEME_HOLO_DARK);
 
         builder.setCancelable(false);
@@ -332,18 +311,28 @@ public class Tab1Membership extends Fragment {
         builder.setPositiveButton(getString(R.string.alert_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Log.d(TAG, "onClick Swish: Starts.");
                 spam = true;
                 sendEmail();
                 if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
                     try {
+                        // Storing all necessary info into the needed JSON.
                         JSONObject json = new JSONObject();
 
+                        // The recipient.
                         JSONObject payee = new JSONObject();
                         payee.put("value", "1230974758");
 
+                        // How much money. If the member is under 18 years old or it is later
+                        // than August, amount changes.
                         JSONObject amount = new JSONObject();
-                        amount.put("value", 400);
+                        if (myAge < 18 || today.getMonthOfYear() >= 8) {
+                            amount.put("value", 200);
+                        } else {
+                            amount.put("value", 400);
+                        }
 
+                        // Greeting message for the payer.
                         JSONObject message = new JSONObject();
                         message.put("value", getString(R.string.swish_message));
                         message.put("editable", false);
@@ -353,19 +342,35 @@ public class Tab1Membership extends Fragment {
                         json.put("amount", amount);
                         json.put("message", message);
 
+                        // Starting Swish.
                         startSwish(myContext, json.toString(), "sdur://connect", "res", 0);
-//                        JSONObject payee = new JSONObject();
-//                        payee.put("value", "1230974758");
-//
-//                        JSONObject amount = new JSONObject();
-//                        amount.put("value", 200);
+
                     } catch (JSONException e) {
                         Log.e(TAG, "onClick: JSON Error", e);
                     }
+                    Log.d(TAG, "onClick Swish: Ends.");
                 }
             }
         });
         builder.show();
+
+        Log.d(TAG, "doubleCheckAndPay: Ends.");
+    }
+
+    private int countAge() {
+        // Taking the right digits from the identitynumber.
+        ageYear = Integer.parseInt(identityNumber.substring(0, 4));
+        ageMonth = Integer.parseInt(identityNumber.substring(4, 6));
+        ageDay = Integer.parseInt(identityNumber.substring(6, 8));
+
+        // Calculating the age using Joda Library (search on GitHub).
+        birth = new LocalDate(ageYear, ageMonth, ageDay);
+        Years age = Years.yearsBetween(birth, today);
+
+        myAge = age.getYears();
+        Log.d(TAG, "countAge: Starts. Age: " + myAge);
+
+        return myAge;
     }
 
     private void sendEmail() {

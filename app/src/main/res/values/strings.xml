@@ -69,7 +69,7 @@
     <string name="toast_messagesent">Formuläret skickat</string>
     <string name="sendemail_subject">NY MEDLEM!</string>
     <string name="toast_alreadysent">Du har redan skickat in formuläret!\nKontakta oss vid problem.</string>
-    <string name="swish_message">Tack för ditt engagemang!\n/SDUR</string>
+    <string name="swish_message">Tack för ditt engagemang! /SDUR</string>
 
     <string name="tab_text_2">EVENTS</string>
     <string name="toast_nolink">Ingen länk finnes</string>
