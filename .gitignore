@@ -8,3 +8,4 @@
 /captures
 .externalNativeBuild
 app/src/main/java/com/dohman/sdur/Config.java
+joda-time
