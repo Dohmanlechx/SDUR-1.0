@@ -35,6 +35,9 @@ MEDLEM:
 
 Här var det väldigt många buggar som jag fått koda bort. En massa! Eftersom jag måste ha
 med i en massa validationer. Fast det har varit ganska enkelt, bara krävts mycket jobb.
+För att kunna mata in förutbestämda värden som mottagare och belopp i Swish måste man
+kunna och använda JSON, här har jag fått plugga på. Trodde det skulle vara enklare annars,
+att man slapp använda något liknande som JSON.
 
 ----------------------------------------------------------------------------------
 

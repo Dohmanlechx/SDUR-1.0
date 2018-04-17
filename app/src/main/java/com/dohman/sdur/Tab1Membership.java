@@ -23,6 +23,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by Dohman on 2018-03-17.
  */
@@ -106,6 +109,7 @@ public class Tab1Membership extends Fragment {
                     Toast.makeText(myContext, getString(R.string.toast_alreadysent), Toast.LENGTH_LONG).show();
                 } else {
                     // Saving what the user had written.
+                    justTest();
                     setValues();
                     // Setting the values if everything was correctly written,
                     // especially the identity number.
@@ -122,6 +126,38 @@ public class Tab1Membership extends Fragment {
         });
 
         return tab1view;
+    }
+
+    public void justTest() {
+        if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
+            try {
+                JSONObject json = new JSONObject();
+
+                JSONObject payee = new JSONObject();
+                payee.put("value", "1230974758");
+
+                JSONObject amount = new JSONObject();
+                amount.put("value", 400);
+
+                JSONObject message = new JSONObject();
+                message.put("value", getString(R.string.swish_message));
+                message.put("editable", false);
+
+                json.put("version", 1);
+                json.put("payee", payee);
+                json.put("amount", amount);
+                json.put("message", message);
+
+                startSwish(myContext, json.toString(), "sdur://connect", "res", 0);
+//                        JSONObject payee = new JSONObject();
+//                        payee.put("value", "1230974758");
+//
+//                        JSONObject amount = new JSONObject();
+//                        amount.put("value", 200);
+            } catch (JSONException e) {
+                Log.e(TAG, "onClick: JSON Error", e);
+            }
+        }
     }
 
     private void setValues() {
@@ -299,8 +335,33 @@ public class Tab1Membership extends Fragment {
                 spam = true;
                 sendEmail();
                 if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
-                    //TODO token och callbackurl?
-                    startSwish(myContext, "???", "sdur://connect", "res", 0);
+                    try {
+                        JSONObject json = new JSONObject();
+
+                        JSONObject payee = new JSONObject();
+                        payee.put("value", "1230974758");
+
+                        JSONObject amount = new JSONObject();
+                        amount.put("value", 400);
+
+                        JSONObject message = new JSONObject();
+                        message.put("value", getString(R.string.swish_message));
+                        message.put("editable", false);
+
+                        json.put("version", 1);
+                        json.put("payee", payee);
+                        json.put("amount", amount);
+                        json.put("message", message);
+
+                        startSwish(myContext, json.toString(), "sdur://connect", "res", 0);
+//                        JSONObject payee = new JSONObject();
+//                        payee.put("value", "1230974758");
+//
+//                        JSONObject amount = new JSONObject();
+//                        amount.put("value", 200);
+                    } catch (JSONException e) {
+                        Log.e(TAG, "onClick: JSON Error", e);
+                    }
                 }
             }
         });
