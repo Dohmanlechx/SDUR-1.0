@@ -3,7 +3,6 @@ package com.dohman.sdur;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import java.util.Properties;
 
@@ -50,8 +49,6 @@ public class SendMail extends AsyncTask<Void, Void, Void> {
         super.onPostExecute(aVoid);
         // Dismissing the progress dialog.
         mProgressDialog.dismiss();
-        // Showing a success message.
-        Toast.makeText(mContext, mContext.getString(R.string.toast_messagesent), Toast.LENGTH_LONG).show();
     }
 
     @Override

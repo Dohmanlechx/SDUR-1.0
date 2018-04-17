@@ -66,9 +66,9 @@
     <string name="alert_email"><b>Email:</b>\u0020</string>
     <string name="pdialog_sending_message">Skickar...</string>
     <string name="pdialog_pleasewait">Vänligen vänta</string>
-    <string name="toast_messagesent">Formuläret skickat</string>
     <string name="sendemail_subject">NY MEDLEM!</string>
     <string name="toast_alreadysent">Du har redan skickat in formuläret!\nKontakta oss vid problem.</string>
+    <string name="toast_noswish">Installera Swish-app</string>
     <string name="swish_message">Tack för ditt engagemang! /SDUR</string>
 
     <string name="tab_text_2">EVENTS</string>
@@ -79,5 +79,4 @@
     <string name="text_du_bestammer">Det är DU som medlem som bestämmer över SDUR, något som många glömt.
                                     Därför är vårt tema under 2018 <i><b>”DU BESTÄMMER”</b></i>, att du som medlem kan komma med idéer
                                     eller önskemål på aktiviteter så ser vi till att uppfylla dina önskemål!</string>
-    <string name="toast_facebook">Tar dig till Facebook...</string>
 </resources>

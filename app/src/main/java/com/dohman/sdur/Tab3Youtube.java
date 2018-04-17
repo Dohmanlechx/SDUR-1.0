@@ -70,8 +70,6 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
         textViewDBText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent facebookIntent = openFacebook(myContext);
-//                startActivity(facebookIntent);
                 Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
                 String facebookUrl = getFacebookPageURL(myContext);
                 facebookIntent.setData(Uri.parse(facebookUrl));

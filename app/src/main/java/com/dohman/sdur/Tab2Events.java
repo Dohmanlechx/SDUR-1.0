@@ -54,19 +54,12 @@ public class Tab2Events extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Starts.");
+        Log.d(TAG, "TAB2, onCreateView: Starts.");
         // Connects to the right layout file.
         View tab2view = inflater.inflate(R.layout.tab2_events, container, false);
 
         mEventListView = tab2view.findViewById(R.id.listview_events);
         mEventList = new ArrayList<>();
-
-        // Customize appearance for the arraylist.
-//        shape = new GradientDrawable();
-//        shape.setShape(GradientDrawable.RECTANGLE);
-//        shape.setColor(getResources().getColor(R.color.colorAccent));
-//        shape.setStroke(5, getResources().getColor(R.color.colorAccent));
-//        shape.setCornerRadius(10);
 
         // Initializing the database.
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -88,7 +81,6 @@ public class Tab2Events extends Fragment {
                 mEventListAdapter = new EventListAdapter(getContext(), mEventList);
                 mEventListView.setAdapter(mEventListAdapter);
                 mEventListView.setDividerHeight(8);
-//                mEventListView.setBackground(shape);
             }
 
             @Override

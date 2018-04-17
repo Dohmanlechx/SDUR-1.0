@@ -77,7 +77,7 @@ public class Tab1Membership extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Starts.");
+        Log.d(TAG, "TAB1, onCreateView: Starts.");
         // Connects to the right layout file.
         View tab1view = inflater.inflate(R.layout.tab1_membership, container, false);
 
@@ -100,9 +100,6 @@ public class Tab1Membership extends Fragment {
         etCity = tab1view.findViewById(R.id.et_city);
         etPhonenumber = tab1view.findViewById(R.id.et_phonenumber);
         etEmail = tab1view.findViewById(R.id.et_email);
-
-//        // Coloring the edittexts' underline.
-//        etForename.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
 
         // Finding the button and setting listener.
         mButton = tab1view.findViewById(R.id.button_send);
@@ -312,9 +309,10 @@ public class Tab1Membership extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Log.d(TAG, "onClick Swish: Starts.");
-                spam = true;
-                sendEmail();
+                // Those codes run if user has Swish installed.
                 if (isSwishAppInstalled(myContext, "se.bankgirot.swish")) {
+                    spam = true;
+                    sendEmail();
                     try {
                         // Storing all necessary info into the needed JSON.
                         JSONObject json = new JSONObject();
@@ -349,6 +347,8 @@ public class Tab1Membership extends Fragment {
                         Log.e(TAG, "onClick: JSON Error", e);
                     }
                     Log.d(TAG, "onClick Swish: Ends.");
+                } else { // User doesn't have Swish.
+                    Toast.makeText(myContext, getString(R.string.toast_noswish), Toast.LENGTH_LONG).show();
                 }
             }
         });
