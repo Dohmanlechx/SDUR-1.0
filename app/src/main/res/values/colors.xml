@@ -6,14 +6,15 @@
     <color name="colorPrimaryDarkTransparent">#cc005ecb</color>
     <color name="colorAccent">#fff176</color>
     <color name="colorAccentTransparent">#ccfff176</color>
-    <color name="test1">#d9313c46</color>
-    <color name="test2">#d9292c30</color>
+    <color name="colorPrimaryGray">#d9313c46</color>
+    <color name="colorPrimaryGrayDark">#d9292c30</color>
     <color name="colorText">#d9ffffff</color>
     <color name="colorText1">#e6fff176</color>
     <color name="white">#ffffff</color>
     <color name="gray">#595959</color>
     <color name="lightgray">#d9d9d9</color>
     <color name="black">#d9000000</color>
+    <color name="unfocusedtab">#b3ffffff</color>
     <color name="transparent">#00000000</color>
     <drawable name="transparent_color">#00000000</drawable>
 </resources>
