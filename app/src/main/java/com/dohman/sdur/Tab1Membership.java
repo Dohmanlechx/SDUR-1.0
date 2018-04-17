@@ -134,7 +134,7 @@ public class Tab1Membership extends Fragment {
         Log.d(TAG, "setValues: Starts.");
 
         // Adding space for the post code if written without any.
-        if (etPostcode.getText().toString().length() == 5) {
+        if (etPostcode.getText().toString().length() == 5 && etPostcode.getText().toString().replaceAll("\\s+","").length() == 5) {
             StringBuilder addSpace;
             addSpace = new StringBuilder(etPostcode.getText().toString());
 
@@ -276,7 +276,7 @@ public class Tab1Membership extends Fragment {
     }
 
     private boolean validPostCode() {
-        if (postCode.length() == 6) {
+        if (postCode.length() == 6 && postCode.replaceAll("\\s+","").length() == 5) {
             return true;
         }
 
