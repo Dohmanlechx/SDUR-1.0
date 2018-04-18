@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPreferencesEditor;
     private ImageView image;
-    private TextView tutorialTv;
 
     private Context myContext;
 
@@ -63,12 +62,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: Starts.");
         super.onCreate(savedInstanceState);
-        // For use of the tutorial screen.
-        tutorialTv = findViewById(R.id.tutorial_message);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        runTutorial();
 
         myContext = this;
 
@@ -138,18 +133,16 @@ public class MainActivity extends AppCompatActivity {
         builder.setCustomTitle(titleView);
         builder.setIcon(R.drawable.backgroundimage_icon);
         builder.setView(messageView);
-
-        mDialog = builder.create();
-        mDialog.setCanceledOnTouchOutside(true);
-        mDialog.show();
-
-        // Dismissing the tutorial screen when clicked.
-        tutorialTv.setOnClickListener(new View.OnClickListener() {
+        messageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDialog.dismiss();
             }
         });
+
+        mDialog = builder.create();
+        mDialog.setCanceledOnTouchOutside(true);
+        mDialog.show();
     }
 
     public void setMyEnum(VisibilityChoice myEnum) {
