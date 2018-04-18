@@ -3,12 +3,12 @@
 
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/colorAccentTransparent" />
+            <solid android:color="@color/colorPrimary" />
         </shape>
     </item>
 
     <item
-        android:bottom="5dp">
+        android:bottom="12dp">
         <shape android:shape="rectangle">
             <solid android:color="@color/colorPrimary" />
         </shape>

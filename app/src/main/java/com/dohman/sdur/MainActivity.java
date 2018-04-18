@@ -2,7 +2,6 @@ package com.dohman.sdur;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -29,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPreferencesEditor;
     private ImageView image;
+    private TextView tutorialTv;
 
     private Context myContext;
 
@@ -63,8 +63,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: Starts.");
         super.onCreate(savedInstanceState);
+        // For use of the tutorial screen.
+        tutorialTv = findViewById(R.id.tutorial_message);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        runTutorial();
 
         myContext = this;
 
@@ -134,16 +138,18 @@ public class MainActivity extends AppCompatActivity {
         builder.setCustomTitle(titleView);
         builder.setIcon(R.drawable.backgroundimage_icon);
         builder.setView(messageView);
-        builder.setPositiveButton(getString(R.string.tutorial_thanks), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                mDialog.cancel();
-            }
-        });
 
         mDialog = builder.create();
-        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.setCanceledOnTouchOutside(true);
         mDialog.show();
+
+        // Dismissing the tutorial screen when clicked.
+        tutorialTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.dismiss();
+            }
+        });
     }
 
     public void setMyEnum(VisibilityChoice myEnum) {

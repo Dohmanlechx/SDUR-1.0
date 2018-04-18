@@ -3,6 +3,7 @@ package com.dohman.sdur;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -94,8 +95,11 @@ public class Tab2Events extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String url = mEventList.get(position).getLaenk();
-                Intent facebookIntent = openFacebook(myContext, url);
+//                Intent facebookIntent = openFacebook(myContext, url);
                 if (url.startsWith("http") || url.startsWith("www")) {
+                    Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
+                    String facebookUrl = getFacebookPageURL(myContext, url);
+                    facebookIntent.setData(Uri.parse(facebookUrl));
                     startActivity(facebookIntent);
                 } else {
                     Toast.makeText(myContext, getString(R.string.toast_nolink), Toast.LENGTH_SHORT).show();
@@ -107,17 +111,21 @@ public class Tab2Events extends Fragment {
         return tab2view;
     }
 
-    // Method taking the user to the Facebook App,
-    // or to the Facebook in browser if fails.
-    private static Intent openFacebook(Context context, String url) {
-        Log.d(TAG, "openFacebook: Starts.");
+    // Method to get the right URL to use in the intent.
+    private String getFacebookPageURL(Context context, String url) {
+        PackageManager packageManager = context.getPackageManager();
         try {
-            context.getPackageManager()
-                    .getPackageInfo("com.facebook.android", 0);
-            return new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(url));
+            int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
+            if (versionCode >= 3002850) { // Newer versions of Facebook app.
+                Log.d(TAG, "getFacebookPageURL: Found APP.");
+                return "fb://facewebmodal/f?href=" + url;
+            } else { // Older versions of Facebook app
+                Log.d(TAG, "getFacebookPageURL: Found APP.");
+                return "fb://page/" + url.replaceAll("\\D+","");
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "getFacebookPageURL: Did not find APP.", e);
+            return url; // Normal web url.
         }
     }
 }
