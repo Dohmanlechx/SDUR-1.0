@@ -191,7 +191,7 @@
             android:fontFamily="@font/notosans_light"
             android:hint="@string/hint_streetaddress"
             android:inputType="textPostalAddress"
-            android:maxLength="60"
+            android:maxLength="40"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:singleLine="true"

@@ -21,8 +21,9 @@
 
     <string name="tab_text_1">BLI MEDLEM</string>
     <string name="hinttext_name">ex. Pelle Pelikansson</string>
-    <string name="text_memberCheck">Här kan du bli medlem hos oss! När du fyllt i alla fält kommer du till Swish-appen där du betalar
-        för medlemskapet. Det kan ta ett par dagar tills du är helt registrerad som medlem!</string>
+    <string name="text_memberCheck">Här kan du bli medlem hos oss! När du fyllt i alla fält kommer du till Swish
+                                    där du betalar för medlemskapet. Det kan ta ett par dagar tills du är helt
+                                    registrerad som medlem!</string>
     <string name="button_memberCheck">Kontrollera</string>
     <string name="text_forename">Förnamn</string>
     <string name="hint_forename">ex. Pelle</string>
