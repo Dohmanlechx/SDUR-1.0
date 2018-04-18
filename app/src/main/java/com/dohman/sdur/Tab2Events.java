@@ -41,7 +41,6 @@ public class Tab2Events extends Fragment {
     private Event event;
 
     private DatabaseReference eventRef;
-//    private GradientDrawable shape;
 
     // Creating an "myContext" from this method.
     @Override
@@ -95,7 +94,6 @@ public class Tab2Events extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String url = mEventList.get(position).getLaenk();
-//                Intent facebookIntent = openFacebook(myContext, url);
                 if (url.startsWith("http") || url.startsWith("www")) {
                     Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
                     String facebookUrl = getFacebookPageURL(myContext, url);
@@ -121,7 +119,7 @@ public class Tab2Events extends Fragment {
                 return "fb://facewebmodal/f?href=" + url;
             } else { // Older versions of Facebook app
                 Log.d(TAG, "getFacebookPageURL: Found APP.");
-                return "fb://page/" + url.replaceAll("\\D+","");
+                return "fb://page/" + url.replaceAll("\\D+", "");
             }
         } catch (PackageManager.NameNotFoundException e) {
             Log.e(TAG, "getFacebookPageURL: Did not find APP.", e);

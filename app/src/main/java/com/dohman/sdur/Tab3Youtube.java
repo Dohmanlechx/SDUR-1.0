@@ -31,8 +31,8 @@ public class Tab3Youtube extends Fragment implements YouTubePlayer.OnInitialized
     private FragmentActivity myContext;
 
     // Facebook url.
-    public static String FACEBOOK_URL = "https://www.facebook.com/groups/193360381417515/";
-    public static String FACEBOOK_PAGE_ID = "193360381417515";
+    private static final String FACEBOOK_URL = "https://www.facebook.com/groups/193360381417515/";
+    private static final String FACEBOOK_PAGE_ID = "193360381417515";
 
     // My API-key for Google.
     private static final String API_KEY = "AIzaSyA7tz7XjWHy_cYyRk69xFfE2demIjX7gYE";

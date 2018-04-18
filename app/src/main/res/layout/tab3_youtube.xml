@@ -21,7 +21,7 @@
             android:background="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/youtube_fragment_container"/>
+            app:layout_constraintTop_toBottomOf="@id/youtube_fragment_container" />
 
         <FrameLayout
             android:id="@+id/youtube_fragment_container"

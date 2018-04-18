@@ -39,8 +39,12 @@ public class Tab1Membership extends Fragment {
 
     private Member member;
 
-    private static final String MAILTOSDUR = "nymedlemsdur@gmail.com";
-    private TextView tv;
+    private static final String MAILTOSDUR;
+
+    static {
+        MAILTOSDUR = "nymedlemsdur@gmail.com";
+    }
+
     private Spinner genderSpinner;
     private EditText etForename;
     private EditText etSurname;
@@ -59,11 +63,15 @@ public class Tab1Membership extends Fragment {
     private String city;
     private String phoneNumber;
     private String email;
-    private Button mButton;
     private boolean spam = false;
     private int myAge, ageYear, ageMonth, ageDay;
     private LocalDate birth;
-    private LocalDate today = new LocalDate();
+    private LocalDate today;
+
+    {
+        // Current real-life time.
+        today = new LocalDate();
+    }
 
     // Creating an "myContext" from this method.
     @Override
@@ -82,7 +90,7 @@ public class Tab1Membership extends Fragment {
         View tab1view = inflater.inflate(R.layout.tab1_membership, container, false);
 
         // Finding the big textview and applying backgroundcolor.
-        tv = tab1view.findViewById(R.id.tv_memberCheck);
+        TextView tv = tab1view.findViewById(R.id.tv_memberCheck);
         tv.setBackgroundResource(R.drawable.text_style_3);
 
         // Finding the gender-spinner and adding values.
@@ -102,7 +110,7 @@ public class Tab1Membership extends Fragment {
         etEmail = tab1view.findViewById(R.id.et_email);
 
         // Finding the button and setting listener.
-        mButton = tab1view.findViewById(R.id.button_send);
+        Button mButton = tab1view.findViewById(R.id.button_send);
         mButton.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimaryDarkTransparent), PorterDuff.Mode.MULTIPLY);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +142,7 @@ public class Tab1Membership extends Fragment {
         Log.d(TAG, "setValues: Starts.");
 
         // Adding space for the post code if written without any.
-        if (etPostcode.getText().toString().length() == 5 && etPostcode.getText().toString().replaceAll("\\s+","").length() == 5) {
+        if (etPostcode.getText().toString().length() == 5 && etPostcode.getText().toString().replaceAll("\\s+", "").length() == 5) {
             StringBuilder addSpace;
             addSpace = new StringBuilder(etPostcode.getText().toString());
 
@@ -276,7 +284,7 @@ public class Tab1Membership extends Fragment {
     }
 
     private boolean validPostCode() {
-        if (postCode.length() == 6 && postCode.replaceAll("\\s+","").length() == 5) {
+        if (postCode.length() == 6 && postCode.replaceAll("\\s+", "").length() == 5) {
             return true;
         }
 
@@ -368,7 +376,7 @@ public class Tab1Membership extends Fragment {
         Years age = Years.yearsBetween(birth, today);
 
         myAge = age.getYears();
-        Log.d(TAG, "countAge: Starts. Age: " + myAge);
+        Log.d(TAG, "countAge: Done. Age: " + myAge);
 
         return myAge;
     }
@@ -394,7 +402,7 @@ public class Tab1Membership extends Fragment {
             context.getPackageManager().getApplicationInfo(SwishPackageName, 0);
             isSwishInstalled = true;
         } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "isSwishAppInstalled: Error!", e);
+            Log.e(TAG, "isSwishAppInstalled: Did not find Swish APP.", e);
         }
 
         return isSwishInstalled;
