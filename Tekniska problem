@@ -37,7 +37,9 @@ Här var det väldigt många buggar som jag fått koda bort. En massa! Eftersom 
 med i en massa validationer. Fast det har varit ganska enkelt, bara krävts mycket jobb.
 För att kunna mata in förutbestämda värden som mottagare och belopp i Swish måste man
 kunna och använda JSON, här har jag fått plugga på. Trodde det skulle vara enklare annars,
-att man slapp använda något liknande som JSON.
+att man slapp använda något liknande som JSON. Lösning: Ironiskt nog så klarade jag det på
+första försöket. JSON är faktiskt hur enkelt som helst! Jag kan till och med koda så att användarna
+under 18 år får billigare belopp. Finemang!
 
 ----------------------------------------------------------------------------------
 
@@ -48,3 +50,11 @@ vägrar koderna funka i MainActivity, det är något med myContext som krånglar
 inte varför. Lösning: Jag hade hela tiden gjort fel (obviously) men det var för att jag inte 
 skrev com.facebook.katana som packagenamn då jag trodde katana var påhittat/frivilligt så 
 programmet kunde aldrig hitta Facebook-appen i luren.
+
+----------------------------------------------------------------------------------
+
+FACEBOOK PACKAGE NAMN:
+
+Detta spökade mig. Jag hade stora problem med att appen skulle hitta Facebook-appen och öppna den.
+Kämpade i flera timmar tills jag insåg att Facebooks package namn faktiskt var com.facebook.katana,
+där jag trodde katana var påhittat och bytte det mot "android". Riktigt onödigt problem! Men lite kul...
