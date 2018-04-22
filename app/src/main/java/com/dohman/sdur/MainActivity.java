@@ -1,7 +1,6 @@
 package com.dohman.sdur;
 
 import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -57,17 +56,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    private BroadcastReceiver activityReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-//            TextView textview = (TextView) findViewById(R.id.textview);
-            Bundle bundle = intent.getBundleExtra("msg");
-//            textview.setText(bundle.getString("msgBody"));
-
-            Log.d(TAG, "onReceive: " + bundle.getString("msgBody"));
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
