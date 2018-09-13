@@ -1,6 +1,7 @@
 package com.dohman.sdur;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -73,8 +75,14 @@ public class Tab2Events extends Fragment {
                 mEventList.clear();
                 // Going through all the children.
                 for (DataSnapshot children : dataSnapshot.getChildren()) {
-                    event = children.getValue(Event.class);
-                    mEventList.add(event);
+                    // Try & catch so it doesn't crash when children don't exist.
+                    try {
+                        event = children.getValue(Event.class);
+                        mEventList.add(event);
+                    } catch (DatabaseException e) {
+                        Log.e(TAG, "onDataChange: Children don't exist.", e);
+                    }
+
                 }
                 // Initializing the adapter.
                 Log.d(TAG, "onCreateView: Initializing the adapter...");
@@ -94,7 +102,16 @@ public class Tab2Events extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String url = mEventList.get(position).getLaenk();
-                if (url.startsWith("http") || url.startsWith("www")) {
+                if (!url.contains("facebook")) {
+                    Log.d(TAG, "onItemClick: Url doesn't contain 'facebook', running web browser.");
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    try {
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(myContext, getString(R.string.toast_notfoundbrowser), Toast.LENGTH_LONG).show();
+                    }
+                } else if (url.contains("facebook") && (url.startsWith("http") || url.startsWith("www"))) {
                     Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
                     String facebookUrl = getFacebookPageURL(myContext, url);
                     facebookIntent.setData(Uri.parse(facebookUrl));
