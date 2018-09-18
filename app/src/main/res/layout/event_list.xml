@@ -12,13 +12,13 @@
 
     <TextView
         android:id="@+id/tv_eventdate"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/notosans_semibold"
         android:text="2018-03-12"
         android:textAlignment="center"
         android:textColor="@color/colorText"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_eventclock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_eventname"
@@ -31,7 +31,7 @@
         android:fontFamily="@font/notosans_bold"
         android:text="Go-kart!"
         android:textColor="@color/colorText"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,19 +44,19 @@
         android:text="Hejvägen 17, Alvik"
         android:textAlignment="center"
         android:textColor="@color/colorAccentTransparent"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_eventname" />
 
     <TextView
         android:id="@+id/tv_eventclock"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/notosans_semibold"
         android:text="13:00"
         android:textAlignment="center"
         android:textColor="@color/colorText"
-        android:textSize="22sp"
+        android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_eventplace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_eventplace" />
@@ -68,8 +68,7 @@
         android:fontFamily="@font/notosans_light"
         android:text="Vi åker gokart! Vi träffas vid McDonalds i Alvik! Pris medlem: 100 kr, Icke medlem: 400 kr"
         android:textColor="@color/colorText"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_eventclock" />
 
